@@ -5,6 +5,7 @@ import json
 import ast
 import random
 import string 
+import requests
 from itertools import chain
 from random import randrange, choice, randint 
 from collections import OrderedDict 
@@ -113,12 +114,15 @@ def index(request):
 					not_have_last=0
 				last_urls[str(reg_course.course.name)]=str(last_url1)
 				final_data_list.append({"name":reg_course.course.name, "cat":reg_course.course.cat, "quizes":QuizResult.objects.filter(user = request.user, course = reg_course.course).count(), "topics":reg_course.course.no_of_chapters, "percent":percent*100, "final_assignment_data":final_assignment_data, "rewards":rewards, 'final_test_data':final_test_data, 'last_urls':last_urls,'not_have_last':not_have_last})
-				print(final_data_list)
 			except Exception as e:
 				print(e)
 
 			# courseCombo = zip(regCourses, regCourses_)
-		context={"final_data_list":json.dumps(final_data_list), "regcourses":reg_courses}
+		last_five = list(AssignmentResults.objects.all().order_by('-id')[:5].values("timetaken", "problem__timegiven", "problem__level"))
+		url = "http://139.59.0.113/api/"
+		r = requests.get(url, params={"data":json.dumps(last_five)})
+		angle = 5*json.loads(r.text)["u"]["action"]
+		context={"angle":angle, "final_data_list":json.dumps(final_data_list), "regcourses":reg_courses}
 	else:
 		context={"courses":courseList, "bundles":bundleList}
 	return HttpResponse(template.render(context,request))

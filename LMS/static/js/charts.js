@@ -1,7 +1,6 @@
 gdata  = jQuery.parseJSON($("#data").val())
-console.log(gdata)
-
-
+guageData = parseInt($("#gdata").val())
+console.log(typeof(guageData))
 gdata.forEach(function (arrayItem, index) {
     $("#me").append("<div class=col-sm-12 col-md-12 col-lg-12'><h2 class='text-secondary m-2' id='name'>"+ arrayItem.name +"</h2><hr><div class='row'><div class='col-md-4 col-xs-6 col-sm-6'><div id='angleGauge' style='height: 250px'></div></div><div class='row col-lg-8 col-md-8 col-sm-12' style='font-size:0.75rem '><div class='col-lg-8 col-md-12'>Progress<div class='progress'><div class='progress-bar' role='progressbar' style='width:"+arrayItem.percent+"%' aria-valuenow='"+arrayItem.percent+"%' aria-valuemin='0' aria-valuemax='100'>"+arrayItem.percent+"%</div></div></div><div class='col-lg-4 col-md-4 col-xs-1 col-sm-1 mt-2'><a href='"+arrayItem.last_urls[arrayItem.name]+"' class='btn btn-primary btn-sm'>Start <i class='fas fa-arrow-right'></i></a></div><div class='col-md-4 col-xs-6 col-sm-6 card-body card-sm'><div class='text-center bg-primary-3 text-white card-body card'>Rewards<span class='text-white'>"+arrayItem.rewards +"</span></div></div><div class='col-md-4 col-xs-6 col-sm-6 card-body card-sm'><div class='text-center bg-primary-3 text-white card-body card'>Projects<span class='text-white'>0</span></div></div><div class='col-md-4 col-xs-6 col-sm-6 card-body card-sm'><div class='text-center bg-primary-3 text-white card-body card'>Quizzes<span class='text-white'>"+arrayItem.quizes+"/"+arrayItem.topics+"</span></div></div></div></div><div id='activeCourseMCQ"+index+"' class='border rounded shadow-3d'></div><!-- <hr> --><div id='activeCoursePS"+index+"' class='border rounded shadow-3d mt-3'></div></div></div>")
 
@@ -310,8 +309,8 @@ Highcharts.chart('angleGauge', {
     },
 
     series: [{
-        name: 'Speed',
-        data: [0],
+        name: 'angle',
+        data: [guageData],
         tooltip: {
             valueSuffix: ' o degrees'
         }
