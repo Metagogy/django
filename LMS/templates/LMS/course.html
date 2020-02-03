@@ -1,0 +1,382 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block content %}
+<section class="bg-primary-3 header-inner p-0 jarallax position-relative o-hidden" data-overlay>
+<div class="container py-0 layer-2">
+    <!-- <div class="row my-3 text-light">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">Elements</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Courses</li>
+          </ol>
+        </nav>
+      </div>
+    </div> -->
+    <div class="row my-4 my-md-6 text-light" data-aos="fade-up">
+      <div class="col-lg-9 col-xl-6">
+        <h1 class="display-4">Course Details</h1>
+      </div>
+      <div class="col-lg-3, col-xl-6">
+        <form method="GET" action="/matchCase/">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search Course" name="search">
+              <div class="input-group-append">
+                <input type="submit" value="Search" class="btn btn-info">
+                <!-- < class="input-group-text" id="basic-addon2">@example.com</span> -->
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="decoration right middle-y scale-4">
+<img class="bg-primary" src="/static/assets/img/decorations/deco-blob-3.svg" alt="deco-blob-3 decoration" data-inject-svg />
+</div>
+</section>
+
+
+    <!-- <section class="section details-page">
+        <div class="overlay">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="row">
+                     <div class="col-md-8">
+                         <h1 class="title-cus">Course Details</h1>
+                     </div>
+                    <div class="col-md-4">
+                        <form method="GET" action="/matchCase/">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Search Course" name="search">
+                                <div class="input-group-append">
+                                    <input type="submit" value="Search" class="btn btn-info">
+                               
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ -->
+
+
+    <section class="section courses">
+        <div class="section-padding">
+
+            <div class="container">
+                {% if course.active %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="display-4">{{course.name}}</h2><!-- /.course-title -->
+                        <hr>
+                        <img class="radius img-center img-fluid mb-5 mt-1 shadow" src="/static/images/{{course.cat}}.png" alt="Course Image">
+
+                        <div class="course-single-details">
+                            <h4 class="display-5">Course description</h4>
+                            <hr>
+                            <h5 class="display-5 mt-5">
+                                {% if course.workshop %}
+                                    Why this Workshop ?
+                                {% else %}
+                                    Why this Course ?
+                                {% endif %}
+                            </h5>
+                            
+                            <p class="lead text-justify">
+                                {{course.what}}
+                            </p>
+                            <h5 class="display-5 mt-5">
+                                <strong>
+                                    What you Learn ?
+                                </strong>
+                            </h5>
+                            <p class="lead text-justify">
+                                {{course.why}}
+                            </p>
+
+                            <h4 class="title">Curriculum for this Course</h4>
+                            {% for chap in course.chapter_set.all|dictsort:"sl_no" %}
+                                <div class="card card-sm card-body shadow-3d">
+                                  <div data-target="#collapseExample{{chap.id}}" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                                    <span class="h5 mb-0 text-dark">{{chap.name}}</span>
+                                    <img class="icon" src="/static/assets/img/icons/interface/plus.svg" alt="plus interface icon" data-inject-svg />
+                                  </div>
+                                  <div class="collapse" id="collapseExample{{chap.id}}">
+                                    <div class="pt-3">
+                                      <p class="mb-0">
+                                        <strong>Topics</strong>
+                                        <ul class="list-group list-group-flush" id="collapseExample{{chap.id}}">
+                                        {% for top in chap.topic_set.all|dictsort:"sl_no" %}
+                                        <li class="list-group-item">
+                                            <span class="float-left"><a href="#"><i class="far fa-file text-dark"></i> <span class="text-dark h6">{{top.name}}</span></a></span>
+                                            <span class="float-right">--:--</span>
+                                        </li>
+                                        {% endfor %}
+                                        </ul>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div> 
+                            {% endfor %}
+
+                            
+                            
+                            <h3 class="title">Student Reviews</h3>
+
+                            <div class="course-reviews">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="average-rating text-center">
+                                            <div class="rating">
+                                                <input type="hidden" class="rating-tooltip-manual" data-filled="fas fa-star" data-empty="far fa-star" value="4.5" data-fractions="5"/>
+                                            </div><!-- /.rating -->
+                                            <span>Average Rating</span>
+                                        </div><!-- /.average-rating -->
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 54%" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="rating-icons">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <span class="rating-value">54%</span><!-- /.rating-value -->
+                                        </div><!-- /.rating-icons -->
+
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="rating-icons">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <span class="rating-value">30%</span><!-- /.rating-value -->
+                                        </div><!-- /.rating-icons -->
+
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="rating-icons">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <span class="rating-value">12%</span><!-- /.rating-value -->
+                                        </div><!-- /.rating-icons -->
+
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 3%" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="rating-icons">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <span class="rating-value">3%</span><!-- /.rating-value -->
+                                        </div><!-- /.rating-icons -->
+                                        
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="rating-icons">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <i class="far fa-star-o"></i>
+                                            <span class="rating-value">1%</span><!-- /.rating-value -->
+                                        </div><!-- /.rating-icons -->
+                                    </div>
+                                </div>
+
+                                <div class="review-contents">
+                                    
+                                </div><!-- /.review-contents -->
+                            </div>
+
+                            
+                        </div><!-- /.course-single-details -->
+
+
+                        
+                    </div>
+
+                    <div class="col-md-4 mt-5" style="">
+                        <aside class="sidebar mt-5">
+                            <p class="mt-1 lead">
+                                {% if request.user.is_anonymous %}
+                                <a class="ml-1 p-1 btn btn-primary form-control" href="/login">Enroll now</a>
+                                {% endif %}
+                            </p>
+                            {% if regCourse %}
+                                <button class="m-1 btn btn-warning form-control" >Already Registered</button>
+                            {% else %}
+                                <a class="ml-1 p-1 btn btn-primary-2 form-control" href="/addToCart/course/{{course.id}}">Add to cart</a>
+
+                            {% endif %}
+                            {% if course.workshop %}
+                            <div class="info mt-3">
+                                <ul class="ml-1 list-group">
+                                    <li class="list-group-item"><h4>Workshop Kit</h4></li>
+                                    <li class="list-group-item">
+                                        <span>
+                                            <p class="lead">
+                                                <span class="count display-5">50</span>+
+                                            <span style="padding: 3px;">Assignments (3 Levels)</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5"><strong>200</strong></span>+
+                                                </span> <span style="padding: 3px;">MCQs</span></p>
+                                        </span></li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5"><strong>15</strong></span>+
+                                                </span> <span style="padding: 3px;">Quizzes</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5"><strong>3</strong></span>
+                                                </span> <span style="padding: 3px;"> Days</span></p>
+                                        </span>
+                                    </li><li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5"><strong>1</strong></span>
+                                                </span> <span style="padding: 3px;"> Realtime Project</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><p class="lead"><img src="/static/assets/img/icons/theme/other/graduation-cap-solid.svg" style="color: rgba(13, 71, 161, 0.85); " class="icon"/> <span style="padding: 3px;">Certificate on Completion</span></p></li>
+                                    <li class="list-group-item text-danger"><p class="lead"><i class="fas fa-dollar-sign" style=" font-size: 25px;"></i> <span style="padding: 3px; font-weight: 700">50% off on next course</span></p></li>
+                                </ul>
+                            </div>
+
+                            {% else %}
+                            <div class="ml-1 info mt-3">
+                                <ul class=" list-group">
+                                    <li class="list-group-item"><h4>Course Kit</h4></li>
+                                    <li class="list-group-item">
+                                        <span>
+                                            <p class="lead">
+                                                    <span class="count display-5">300</span>+
+                                                </span> <span style="padding: 3px;">Assignments (3 Levels)</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">500</span>+
+                                                </span> <span style="padding: 3px;">MCQs</span></p>
+                                        </span></li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">25</span>+
+                                                </span> <span style="padding: 3px;">Quizzes</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">12</span>
+                                                </span> <span style="padding: 3px;"> Months Active Access</span></p>
+                                        </span>
+                                    </li><li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">2</span>
+                                                </span> <span style="padding: 3px;"> Realtime Projects</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><p class="lead"><img src="/static/assets/img/icons/theme/other/graduation-cap-solid.svg" style="color: rgba(13, 71, 161, 0.85); " class="icon"/> <span style="padding: 3px;">Certificate on Completion</span></p></li>
+                                    <li class="text-danger list-group-item"><p class="lead"><i class="fas fa-briefcase" style=" font-size: 25px; font-weight: 700"></i> <span style="padding: 3px;"> Internship</span></p></li>
+                                </ul>
+                            </div>
+                            <div class="info mt-3">
+                                <ul class="ml-1 list-group">
+                                    <li class="list-group-item"><h4>Opportunities</h4></li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">10</span>
+                                                </span> <span style="padding: 3px;"> Interview Chances</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                    <span class="count display-5">10</span>
+                                                </span> <span style="padding: 3px;"> Mock Interviews</span></p>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endif %}
+                            <!-- =====end ==== -->
+                            <div class="info mt-3">
+                                <ul class="ml-1 list-group">
+                                    <li class="list-group-item"><h4>Support</h4></li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                <span style="padding: 2px; font-size: 25px; color: rgba(13, 71, 161, 0.85); border-radius: 3px;">
+                                                    <i class="fas fa-user-tie"></i>
+                                                </span> <span style="padding: 3px;"> Mentor</span></p>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item"><span>
+                                            <p class="lead">
+                                                <span style="padding: 2px; font-size: 25px; color: rgba(13, 71, 161, 0.85); border-radius: 3px;">
+                                                    <i class="fas fa-users"></i>
+                                                </span> <span style="padding: 3px;"> Group Dynamics</span></p>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </aside><!-- /.sidebar -->
+                    </div>
+                </div><!-- /.row -->
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="radius img-center img-fluid mb-5 mt-1 shadow" src="/static/images/{{course.cat}}.png" alt="Course Image">
+                        </div>
+                        <div class="col-md-6">
+                            <h1><strong>Coming Soon</strong></h1>
+                            <a class="btn btn-info" href="/courses/"><h5 style="color: white;">Go Back to Courses</h5></a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div><!-- /.container -->
+
+
+        </div><!-- /.section-padding -->
+    </section><!-- /.courses -->
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.js-example-basic-single').select2(
+      {
+        placeholder: 'Find a Course',
+      });
+    $("#courseSearch").on('select2:select', function (e){
+      window.location.href=e.params.data.id;
+    })
+});
+
+</script>
+{% endblock %}

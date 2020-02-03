@@ -1,0 +1,250 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+<section class="bg-primary-3 header-inner p-0 jarallax position-relative o-hidden" data-overlay>
+<div class="container py-0 layer-2">
+    <!-- <div class="row my-3 text-light">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">Elements</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Courses</li>
+          </ol>
+        </nav>
+      </div>
+    </div> -->
+    <div class="row my-4 my-md-6 text-light" data-aos="fade-up">
+      <div class="col-lg-9 col-xl-6">
+        <h1 class="display-4">Courses</h1>
+      </div>
+      <div class="col-lg-3, col-xl-6">
+        <form method="GET" action="/matchCase/">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search Course" name="search">
+              <div class="input-group-append">
+                <input type="submit" value="Search" class="btn btn-info">
+                <!-- < class="input-group-text" id="basic-addon2">@example.com</span> -->
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="decoration right middle-y scale-4">
+<img class="bg-primary" src="/static/assets/img/decorations/deco-blob-3.svg" alt="deco-blob-3 decoration" data-inject-svg />
+</div>
+</section>
+
+<!-- <section class="courses mt-5 mb-5">
+<div class="section-padding-about">
+    <div class="container"> -->
+       <!--  <h1 class=""><strong>Course</strong></h1>
+        <div class="row mt-5">
+            <div class="col-md-5 col-sm-12">
+                <img src="/static/images/banner/single.jpg" alt="Portfolio Image" class="img-center img-fluid shadow">
+            </div>
+            <div class="col-md-7 col-sm-12 m-0">
+                <div class="single-works-content">
+                    <p>
+                        <strong>
+                            The origin for something new. 
+                        </strong>
+                    </p>
+                    <p class="p-cus">
+                        A bright invention has to begin with a unique choice. Pick notable courses which offers all the required sources for such an invention.   
+                    </p>
+
+                    <div class="meta">
+                        <ul>
+                            <li><span class="meta-id">Course Kit:</span> AI powered Dynamic  content | Assignments | MCQs | Projects | Certification</li>
+                            <li><span class="meta-id">Opportunities:</span>Hackathons |  Exposure to Interviews </li>
+                            <li><span class="meta-id">Support:</span>AI Assistance | Mentor | Community | Group support </li>
+                            
+                        </ul>              
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    {% for course in courses %}
+    {% if course.active %}
+    <section class="pt-5">
+      <div class="container">
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6">
+            <a class="fade-page" href="/course/{{course.id}}">
+              <img src="/static/images/{{course.cat}}.png" alt="Coworking" class="rounded shadow-3d hover-shadow-3d border mb-3 mb-md-0">
+            </a>
+          </div>
+          <div class="col">
+            <div class="row justify-content-center">
+              <div class="col-xl-9 col-lg-10">
+                <a href="home-coworking.html" class="fade-up">
+                  <h3 class="h2">{{course.name}}<span class="badge badge-primary ml-2">New</span></h3>
+                </a>
+                <p class="lead">
+                  A landing for shared workspaces with date picker functionality.
+                </p>
+                <ul class="list-unstyled my-3">
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg" src="/static/assets/img/icons/theme/other/clock-regular.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-2">{{course.duration}} days</span>
+                  </li>
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg ml-1" src="/static/assets/img/icons/theme/other/rupee-sign-solid.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-3">{{course.price}}</span>
+                  </li>
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg" src="/static/assets/img/icons/theme/other/graduation-cap-solid.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-2">completion certificate</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+    
+
+<!--         <div class="row mt-5">
+            <div class="course-items">
+                <div class="row">
+                    {% for course in courses %}
+                    {% if course.active %}
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/course/{{course.id}}">
+                        <div class="card shadow-lg border-5  mt-5">
+                            <div><img src="/static/images/{{course.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div>
+                            <div class="item-details-cus p-4 l-5">
+                                <h6 class=""><strong>{{course.name}}</strong></h6>
+                                <span class="instructor">Duration : {{course.duration}} days</span>
+
+                                <div class="details-bottom">
+                                    <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{course.price}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% else %} -->
+                    <!-- <div class="col-lg-4 col-md-6">
+                        <a href="/course/{{course.id}}">
+                        <div class="card shadow-lg border-5  mt-5">
+                            <div><img src="/static/images/{{course.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div>
+                            <div class="item-details-cus p-4 l-5">
+                                <h6 class=""><strong>{{course.name}}</strong></h6>
+                                <span class="instructor">Duration : {{course.duration}} days</span>
+                                <div class="details-bottom">
+                                    <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{course.price}}</span></div><div class="rating float-right">
+                                         <span style="background-color: orange; color: white; padding: 3px;">Coming soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div> -->
+<!--                     {% endif %}
+                    {% endfor %} -->
+ <!--                    
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+        <!-- <section class="section courses section">
+        <div class="section-padding-about">
+            <div class="container">
+
+                    
+                    <h1 class=""><strong>Bundles</strong></h1>
+                    <div class="row mt-5">
+                        <div class="col-md-5 Portfolio">
+                            <img src="/static/images/banner/bundle.jpg"  alt="Portfolio Image" class="img-center img-fluid">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="single-works-content">
+                                <p>
+                                    <strong>
+                                        The Complete Start-to-End Resource. 
+                                    </strong>
+                                </p>
+                                <p class="p-cus">
+                                A platform is built with the collection of multiple sources which makes you stand ahead of others and what if such availaibilty is provided?     
+                                A bundle Covers all the requirements of choosen field and thus shapes a person to fit perfect. 
+                                </p>
+
+                                <div class="meta">
+                                    <ul>
+                                        <li><span class="meta-id">Course Kit:</span> Collection of Courses with dynamic content | Assignments | MCQS | Projects | Certification</li>
+                                        <li><span class="meta-id">Opportunities:</span>Hackathons |  Exposure to Interviews | Internships</li>
+                                        <li><span class="meta-id">Support:</span>AI Assistance | Mentor | Community | Group support </li>
+                                        
+                                    </ul>              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="course-items">
+                   <div class="row">
+                        {% for bundle in bundles %}
+                        {% if bundle.active %}
+                        <div class="col-lg-4 col-md-6 m-0">
+                            <a href="/bundle/{{bundle.id}}">
+                            <div class="card shadow-lg border-5  mt-5">
+                                <div><img src="/static/images/{{bundle.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div>
+                                <div class="item-details-cus p-4">
+                                    <h6 class="card-title"><strong>{{bundle.name}}</strong></h6>
+                                    <span class="instructor">Duration : {{bundle.duration}} days</span>
+                                    <div class="details-bottom">
+                                        <div class="course-price float-left">
+                                            <span class="currency">INR </span><span class="price">{{bundle.price}}</span></div>
+                                        <div class="float-right">
+                                            <span class="ribbon btn-warning mt-5" style="background-color: orange; color: white; padding: 3px;">Integrated Internship</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-4 col-md-6">
+                            <a href="/bundle/{{bundle.id}}">
+                            <div class="card shadow-lg border-5  mt-5">
+                                <div><img src="/static/images/{{bundle.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div>
+                                <div class="item-details-cus p-4 l-5">
+                                    <h6 class=""><strong>{{bundle.name}}</strong></h6>
+                                    <span class="instructor">Duration : {{course.duration}} days</span><div class="details-bottom">
+                                        <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{bundle.price}}</span></div>
+                                        <div class="rating float-right">
+                                        <span class="ribbon btn-warning" style="background-color: orange; color: white; padding: 3px;">Coming Soon</span>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        
+                  </div>
+                </div>
+            </div>
+
+        </div>
+ 
+</section> -->
+{% endblock %}

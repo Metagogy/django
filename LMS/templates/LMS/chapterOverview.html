@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="container card card-body shadow-3d vh-60 mt-5 mb-5">
+    <div class="m-5 text-center">
+        <h1 class="">End of Chapter</h1>
+        <a href="/contentsDisplay/course/{{registeredCourse_content_display}}" class="btn btn-info">Take me to next chapter.</a>
+    </div>
+</div>
+
+<!-- <section class="section pb-0 bg-gradient-warning my-0">
+      <div class="shape shape-style-1 shape-primary alpha-4">
+        <span></span>
+        <span></span>
+      </div>
+        <div class="container py-lg-md d-flex">
+        <h1 class="display-1  text-white"><i class="fa fa-history" aria-hidden="true"></i>&nbsp;Chapter Overview</h1>
+        </div>
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+</section>
+<br>	
+<br/> -->
+<!-- <div class="container"> 
+    <div class="row ">
+    
+	<div class="col-md-12 comments-area" >
+    <h3 style="">Chapter&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{chapter.name}}</h3>
+    <hr>
+    	<div class="icon icon-lg icon-shape icon-shape-warning shadow rounded-circle mb-5">
+            <i class="ni ni-settings"></i>
+        </div>
+        <span class="display-4">Test Report</span>
+    	{% for test in testResults %}
+    		<p><strong>{{forloop.counter}})&nbsp;&nbsp;&nbsp;{{test.topic__name}}</strong></p>
+
+    		<p>Level - 1     :     {{test.Easy_percentile}}&nbsp;%</p>
+    		<p>Level - 2     :     {{test.Intermediate_percentile}}&nbsp;%</p>
+    		<p>Level - 3     :     {{test.Difficult_percentile}}&nbsp;%</p>
+    		<p>Overall Score :     {{test.quiz_percentile|floatformat:2}}&nbsp;%</p>
+    	{% endfor %}
+    	<hr>
+
+    	<div class="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
+            <i class="ni ni-settings-gear-65"></i>
+        </div>
+        <span class="display-4">Assignment Report</span>
+    	{% for assign in assignmentResults %}
+
+    		<p><strong>{{forloop.counter}})&nbsp;&nbsp;&nbsp;Problem ID:{{assign.problem_id__pblm_id}}</strong></p>
+    		<p>TestCase - 1:{{assign.testcase1}} </p>
+            <p>TestCase - 2:{{assign.testcase2}} </p>
+            <p>TestCase - 3:{{assign.testcase3}} </p>
+            <p>Time Taken - 3:{{assign.timetaken}} </p>
+    	   
+        {% endfor %}
+	
+	{% if next_chapter != None %}
+		<div>
+        <a class="btn bg-gradient-warning rounded text-white" style="float: right;width:420px;" href="/topicAndTest/{{chapter.course.id}}/{{next_chapter}}/{{next_topic.sl_no}}/">Go To Next Chapter&nbsp;&nbsp;<i class="fa fa-arrow-right" ></i> </a>
+        </div>
+	{% endif %}
+	<br>
+<br>
+    </div>
+</div>
+</div> -->
+{% endblock %}

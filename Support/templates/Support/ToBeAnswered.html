@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+	<h1 class="text-center display-2 text-white">Raised by Your team mates</h1>
+</section>
+<br/>
+<div class="container">
+<div class="row">
+	<div class="col-md-12">
+		{%if qns %}
+			{% for q in qns %}
+	        		<h4>{{q.about}}</h4>
+					<h4>
+						<a href="/A2AoutgoingAnswers/{{q.id}}/"><pre>{{q.query}}</pre></a>
+					</h4>
+					<div>
+						<span>{{q.raised_by.username}}</span>
+						<span>{{q.timestamp}}</span>
+					</div>					
+					<hr>
+			{% endfor%}
+		{% else %}
+			<br/><br/>
+		    <h3 class="text-center">No Questions Found !!!!!!!! </h3>
+		{% endif %} 		
+
+	</div>
+</div>
+</div>
+{% endblock %}

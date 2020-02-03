@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+	<h1 class="text-center display-2">Ask Your Friend</h1>
+</section>
+<br>
+<div class="container card shadow">
+	<div class="row card-body">
+	<div class="col-md-12 row">
+		<div class="col-md-4"><h3>Ask Question</h3></div>
+		<div class="col-md-8">
+			<a class="btn btn-warning form-control" href="/ToBeAnswered/{{courseid}}">Direct Questions To You</a>
+		</div>
+	</div>
+
+	<div class="col-md-12">
+	<form action="/A2AQuestionUpload/{{courseid}}/{{toUser}}/"   method="post" enctype="multipart/form-data" >{% csrf_token %}
+	<input type="hidden" value="{{courseid}}" name="course" placeholder="Your Question">
+		
+		<input type="text" value="" name="about" placeholder="what is the question about" class="form-control">
+<br>
+		<textarea rows="11" id="question" name="question" value="" placeholder="question/code" class="form-control"></textarea>
+		<div class="form-group">
+            <div class="checkbox checkbox-info">
+                <div class="custom-control custom-checkbox mb-3">
+	              <input class="custom-control-input" id="customCheck2" type="checkbox" name="globalize">
+	              
+	            </div>
+            </div> 
+        </div>	
+		<input type="submit" id="submitbutton" class="btn btn-primary" value="submit" >
+	</form>
+	</div>
+	</div><!-- End box_icon -->
+				
+</div><!-- End container -->
+	
+	
+<div class="container">
+ 	<div class="row">
+        <div class="col-md-12">
+        	
+        	{% if qns %}
+			<h4>Questions</h4>
+        		{% for q in qns %}
+        		<pre>{{q.about}}</pre>
+				
+					<a href="/A2AquesAnswers/{{q.id}}/"><pre>{{q.query}}</pre></a>
+				
+				
+				
+				<div class="question-author">
+					<a href="#" original-title="ahmed" class="question-author-img tooltip-n">
+						<img alt="" src="https://2code.info/demo/html/ask-me/images/demo/avatar.png"></a>
+				</div>
+				<div class="question-inner">
+					<div class="clearfix"></div>
+					<p class="question-desc"></p>
+					<span class="question-date"><i class="em em-man_in_tuxedo"></i> {{q.toUser}}</span>
+					
+					<span class="question-date"><i class="em em-clock4"></i> {{q.timestamp}}</span>
+					<span class="question-comment"><i class="em em-spiral_note_pad"></i>&nbsp;Answers( {{q.postanswer_set.all|length}} )</span>
+					
+					<div class="clearfix"></div>
+				</div>
+				<hr></hr>
+			     {% endfor%}
+			{% else %}
+				<br/><br/>
+		    	<h3 class="text-center">No Questions Found !!!!!!!! </h3>
+		    {% endif %} 
+
+			</div>
+			
+	</div>
+</div>
+								
+
+	
+    <div class="col-md-1"></div>
+
+
+{% endblock %}
+			

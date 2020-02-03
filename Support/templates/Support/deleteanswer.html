@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<br/>
+<div class="container quesAnswers">
+<div class="row">
+    <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+        	<div class="card" style="box-shadow: 5px 10px 18px #888888;">
+			    <div class="card-body">
+	        		<div class="row">
+		        		<div class="col-md-9">
+		        			<h5>D o you really want to delete the answer????<a href="/deleteRedirect/{{id}}/" class="btn btn-outline-primary">delete</a></h5>
+		        		</div>
+		        	</div>
+		        </div>
+		    </div>
+		</div>
+	<div class="col-md-1"></div>
+</div>
+</div>
+{% endblock %}

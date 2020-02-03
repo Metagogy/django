@@ -1,0 +1,269 @@
+{% load staticfiles %}
+<!doctype html>
+
+<html class="no-js" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Metagogy Learning Systems Pvt Ltd</title>
+    <meta name="description" content="Metagogy Learning Systems Pvt Ltd">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/assets/css/style1.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/assets/css/charts.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="preload" as="font" href="/static/assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/static/assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4fbe07d7bf.js"></script>
+
+</head>
+
+
+<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" class="loaded">
+    <div class="loader">
+      <div class="loading-animation"></div>
+    </div>
+
+    <header>
+      <div class="navbar-container">
+         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm text-secondary">
+          <div class="container">
+            <a class="navbar-brand h2" href="/">
+              <!-- AI Educator -->
+                  <img src="/static/images/logobing.jpeg" alt="" height="25px" width="200px">
+                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home
+                      </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/courses">Courses</a>
+                </li>
+
+                
+               <li class="nav-item">
+                  <a class="nav-link" href="/registeredCourses">RegisteredCourses</a>
+                </li>
+
+
+
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/internships">Internships</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/events">Events</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/techArticles">Tech Articles</a>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+
+                {% if request.user.is_anonymous %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/profile">Profile</a>
+                    <a class="dropdown-item" href="/changePassword">Change password</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a href="/cart" class="nav-link">Cart <i class="fas fa-shopping-cart"></i></a>
+                </li>
+                {% endif %}
+                
+                {% if request.user.is_anonymous  %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/register">Register</a>
+                </li>
+                {% else %}
+                
+               <!--  <li class="nav-item" ng-init="cartObject()">
+
+                  <a ng-if= "objects == true " class="nav-link"  href="/cart"><i class="fas fa-shopping-cart "></i></a>
+                  <a ng-if= "objects != true" class="nav-link"  href="/cart"><i class="fas fa-shopping-cart text-danger Blink"></i></a>
+                </li> -->
+                
+                    
+                {% endif %}
+                
+              </ul>
+            </div>
+          </div>
+
+        </nav>
+      </div>
+    </header><!-- /.masthead -->
+      <div>
+         {% if course_grp != None %}
+        <!-- <button id="groupButton" class="mt-5 mr-2 btn btn-primary text-white rounded float-right shadow-3d" data-toggle="tooltip" title="Click to see Group Members"><i class="fas fa-users"></i></button> -->
+          {% endif %}
+        {% block content %}
+        {% endblock %}
+      </div>
+
+      <!-- Site footer -->
+    <footer class="site-footer bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6 class="display-5 text-white">About</h6>
+            <p class="text-justify">Ai Educator is an E-learning platform of Metagogy Learning Systems Pvt Ltd. Helps users to learn the right things at right time to achieve your goal by enabling group dynamics and simultaneously.</p>
+            <div class="col-sm-12 col-md-6">
+              {% if course_grp != None %}
+                <input type="hidden" id="course_id" name="course_id" value="{{course_grp}}" >
+                <div id="mygroup" class="bg-primary-alt rounded p-2 mr-2">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6 class="text-white">Categories</h6>
+            <ul class="footer-links text-white">
+              <li><a href="/course/1/" class="text-white">Python</a></li>
+              <li><a href="/course/4/" class="text-white">Machine Learning</a></li>
+              <li><a href="/course/2/" class="text-white">Django</a></li>
+              <li><a href="/course/9/" class="text-white">Java</a></li>
+              <li><a href="/course/6/" class="text-white">Angular</a></li>
+              <li><a href="/course/8/" class="text-white">Kotlin</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6 class="text-white">Quick Links</h6>
+            <ul class="footer-links text-white">
+              <li><a href="/about" class="text-white">About Us</a></li>
+              <li><a href="/contact" class="text-white">Contact Us</a></li>
+              <li><a href="/internships" class="text-white">Internships</a></li>
+              <li><a href="/events" class="text-white">Events</a></li>
+              <li><a href="http://scanfcode.com/sitemap/" class="text-white">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
+         Metagogy Learning Systems Pvt Ltd.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up" data-aos-offset="2000" data-aos-mirror="true" data-aos-once="false">
+      <img class="icon" src="/static/assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg />
+    </a>
+    <!-- <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="modal-notification" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="fas fa-bell fa-3x"></i>
+              <h4 class="heading mt-4">You should read this!</h4>
+              <p class="text-center">This web application is currently under development.</p>
+              <p class="text-center">So some of the features will not perform as defined.</p>
+              <h5 class="heading mt-4">Inconvenience regretted. <i class="fas fa-frown fa-3x"></i> </h5>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/bootstrap.js"></script>
+
+    <!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
+
+    <!-- AOS (Animate On Scroll - animates elements into view while scrolling down) -->
+    <script type="text/javascript" src="/static/assets/js/aos.js"></script>
+    <!-- Clipboard (copies content from browser into OS clipboard) -->
+    <script type="text/javascript" src="/static/assets/js/clipboard.js"></script>
+    <!-- Fancybox (handles image and video lightbox and galleries) -->
+    <script type="text/javascript" src="/static/assets/js/jquery.fancybox.min.js"></script>
+    <!-- Flatpickr (calendar/date/time picker UI) -->
+    <script type="text/javascript" src="/static/assets/js/flatpickr.min.js"></script>
+    <!-- Flickity (handles touch enabled carousels and sliders) -->
+    <script type="text/javascript" src="/static/assets/js/flickity.pkgd.min.js"></script>
+    <!-- Ion rangeSlider (flexible and pretty range slider elements) -->
+    <script type="text/javascript" src="/static/assets/js/ion.rangeSlider.min.js"></script>
+    <!-- Isotope (masonry layouts and filtering) -->
+    <script type="text/javascript" src="/static/assets/js/isotope.pkgd.min.js"></script>
+    <!-- jarallax (parallax effect and video backgrounds) -->
+    <script type="text/javascript" src="/static/assets/js/jarallax.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/jarallax-video.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/jarallax-element.min.js"></script>
+    <!-- jQuery Countdown (displays countdown text to a specified date) -->
+    <script type="text/javascript" src="/static/assets/js/jquery.countdown.min.js"></script>
+    <!-- jQuery smartWizard facilitates steppable wizard content -->
+    <script type="text/javascript" src="/static/assets/js/jquery.smartWizard.min.js"></script>
+    <!-- Plyr (unified player for Video, Audio, Vimeo and Youtube) -->
+    <script type="text/javascript" src="/static/assets/js/plyr.polyfilled.min.js"></script>
+    <!-- Prism (displays formatted code boxes) -->
+    <script type="text/javascript" src="/static/assets/js/prism.js"></script>
+    <!-- ScrollMonitor (manages events for elements scrolling in and out of view) -->
+    <script type="text/javascript" src="/static/assets/js/scrollMonitor.js"></script>
+    <!-- Smooth scroll (animation to links in-page)-->
+    <script type="text/javascript" src="/static/assets/js/smooth-scroll.polyfills.min.js"></script>
+    <!-- SVGInjector (replaces img tags with SVG code to allow easy inclusion of SVGs with the benefit of inheriting colors and styles)-->
+    <script type="text/javascript" src="/static/assets/js/svg-injector.umd.production.js"></script>
+    <!-- TwitterFetcher (displays a feed of tweets from a specified account)-->
+    <script type="text/javascript" src="/static/assets/js/twitterFetcher_min.js"></script>
+    <!-- Typed text (animated typing effect)-->
+    <script type="text/javascript" src="/static/assets/js/typed.min.js"></script>
+    <!-- Required theme scripts (Do not remove) -->
+    <script type="text/javascript" src="/static/assets/js/theme.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://rawgit.com/highcharts/rounded-corners/master/rounded-corners.js"></script>
+    <!-- Removes page load animation when window is finished loading -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true&amp;key=AIzaSyDtauF7lCDtxJmba1Vi62whEB5MhDtZNaU"></script>
+    <script type="text/javascript">
+      window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
+    </script>
+
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/js/ace.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/pin.js"></script>
+    <script type="text/javascript" src="/static/js/charts.js"></script>
+
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>

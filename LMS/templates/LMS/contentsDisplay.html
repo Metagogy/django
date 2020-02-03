@@ -1,0 +1,131 @@
+{% extends 'home.html' %} 
+{% block content %}
+
+
+<div class="container">
+
+{% if content.course %}
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="display-5">{{content.course.name}}</h2><!-- /.course-title -->
+        <h5 class="display-5">{{request.user.username}}</h2><!-- /.course-title -->
+        <div class="progress float-right">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+        </div>
+        <hr>
+<!--         <img class="radius img-center img-fluid mb-5 mt-1 shadow" src="/static/images/{{content.course.cat}}.png" alt="Course Image"> -->
+        <!-- <div id="container"></div> -->
+        <div class="course-single-details">
+            
+
+            <h4>Course description</h4>
+            <h5>
+                    Why this Course ?
+            </h5>
+            
+            <p>
+                {{content.course.what}}
+            </p>
+            <h5>
+                <strong>
+                    What you Learn ?
+                </strong>
+            </h5>
+            <p>
+                {{content.course.why}}
+            </p>
+             <h4 class="title">Curriculum for this Course</h4>
+            {% for chap in content.course.chapter_set.all|dictsort:"sl_no" %}
+                <div class="card card-sm card-body shadow-3d">
+                  <div data-target="#collapseExample{{chap.id}}" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                    <span class="h5 mb-0 text-dark">{{chap.name}}</span>
+                    <img class="icon" src="/static/assets/img/icons/interface/plus.svg" alt="plus interface icon" data-inject-svg />
+                  </div>
+                  <div class="collapse" id="collapseExample{{chap.id}}">
+                    <div class="pt-3">
+                      <p class="mb-0">
+                        <strong>Topics</strong>
+                        <ul class="list-group list-group-flush" id="collapseExample{{chap.id}}">
+                        {% for top in chap.topic_set.all|dictsort:"sl_no" %}
+                        <li class="list-group-item">
+                            <span class="float-left"><a href="/topicAndTest/{{chap.course.id}}/{{chap.sl_no}}/{{top.sl_no}}"><i class="far fa-file text-dark"></i> <span class="text-dark h6">{{top.name}}</span></a></span>
+                            <span class="float-right">--:--</span>
+                        </li>
+                        {% endfor %}
+                        </ul>
+                      </p>
+                    </div>
+                  </div>
+                </div> 
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="row">
+<div class="col-md-12">
+    <h2 class="display-3">{{content.bundle.name}}</h2><!-- /.course-title -->
+        <div class="row pb-3 mt-5">
+            <div class="col-md-1">
+                <img class="rounded-circle float-left img-center img-fluid shadow" src="/static/images/avatar/2.png" alt="Avatar">
+            </div>
+            <div class="col-md-5">
+                <span class="meta-id">Instructor</span> : 
+                <span><strong>Metagogy</strong></span>
+            </div>
+            <div class="col-md-5">
+                <span class="meta-id">Category</span> : 
+                <span><strong>{{content.bundle.cat}}</strong></span>
+            </div>
+        </div>
+    <img class="radius  img-center img-fluid mb-5 mt-1 shadow" src="/static/images/{{content.bundle.cat}}.png" alt="Course Image">
+
+    <div class="course-single-details">
+        <h4 class="display-4">Bundle description</h4>
+        <h5 class="display-4 mt-5">
+                Why this Bundle ?
+        </h5>
+        
+        <p>
+            {{content.bundle.what}}
+        </p>
+        <h5 class="display-4 mt-5">
+                What you Learn ?
+        </h5>
+        <p>
+            {{content.bundle.why}}
+        </p>
+        <h4 class="title">Curriculum for this Bundle</h4>
+        <div class="curriculum-details">
+           {% for course in content.bundle.courses.all %} 
+            <div class="content-table-cus">
+                <a class="curriculum-details-title-cus" data-toggle="collapse" href="#Example{{course.id}}">{{course.name}}<span class="float-right"><i class="fas fa-angle-down"></i></span></a>
+                <ul class="content-list collapse" id="Example{{course.id}}">
+
+           {% for chap in course.chapter_set.all %} 
+            <div class="content-table mt-2">
+                <a class="title" data-toggle="collapse" href="#collapseExample{{chap.id}}">{{chap.name}}<span class="float-right"><i class="fas fa-angle-down"></i></span></a>
+                <ul class="content-list collapse" id="collapseExample{{chap.id}}">
+                    {% for top in chap.topic_set.all|dictsort:"sl_no" %}
+                    <li>
+                        <span class="float-left"><a href="/topicAndTest/{{chap.sl_no}}/{{top.sl_no}}"><i class="far fa-file"></i> {{top.name}}</a></span>
+                        <span class="float-right">--:--</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div><!-- /.content-table -->
+            {% endfor %}
+                </ul>
+                </div><!-- /.content-table -->
+            {% endfor %}
+        </div><!-- /.curriculum-details -->                     
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endif %}                            
+                          
+{% endblock %}

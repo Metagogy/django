@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div>
+            
+            <h3>Submit an answer</h3>
+            
+        </div>
+        <form action="/ansSubmit/{{question.id}}/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+            
+
+                <h4>Answer</h4>
+                    <textarea id="vdt_table_textarea" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"  style="height: 10em;" type="text" name="answer"  class="form-control">
+
+                    </textarea>
+                <br/>
+                
+                <input type="submit" value="submit"  class="btn btn-primary">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+</div>
+
+{% endblock %}

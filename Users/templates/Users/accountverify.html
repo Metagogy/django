@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+{% block content %}
+<br>
+<br>
+<div class = "container">
+	<h3 class="display-4 text-center">Verify your account</h3>
+	<div class="row m-5">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">	
+			{% if error %}
+				<div class="alert alert-danger">
+					{{error}}
+				</div>
+			{% else %}
+			<form method="post" action="/verifyAccount/" class="">{% csrf_token %}
+					<label for="key">Enter code</label>
+					<input type="text" name="key" value="" placeholder="Enter Code" required="" class="form-control mb-3">
+					<button class="btn btn-primary form-control" type="submit">Submit</button>
+				</form>
+			{% endif %}
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+<br>
+<br>
+{% endblock %}

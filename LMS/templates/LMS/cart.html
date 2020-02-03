@@ -1,0 +1,56 @@
+{% extends 'home.html' %} 
+{% block content %}
+<br>
+<br>
+
+<div class="container">
+<div class= "text-center">
+	<h3 class="heading-primary mt-5">CART</h3>
+		{% if cart_items %}
+		<table class="box-shadow-cus table  table-bordered table-responsive-sm table-responsive-lg table-responsive-md">
+        	<thead>
+        		<tr>
+        			<th>User</th>
+        			<th>Course</th>
+        			<th>Bundle</th>
+
+        			<th>DateTime</th>
+        			<th>Delete</th>
+        			<th>CheckOut</th>
+    			</tr>
+        	</thead>
+        	<tbody>
+	        		{% for item in cart_items %}
+	        		<tr>
+	        			<td><span class="text-uppercase">{{item.user.username}}</span></td>
+	        			<td><span class="text-uppercase">{{item.course.name}}</span></td>
+	        			<td><span class="text-uppercase">{{item.bundle}}</span></td>
+	        			<td><span>{{item.time}}</span></td>
+	        			<td><a href="/deleteFromCart/{{item.id}}" class="btn btn-outline btn-success box-shadow-cus">Delete</a></td>
+	        			{% if item.course %}
+	        			<td><a href="/cartCheckout/course/{{item.id}}" class="btn btn-outline btn-info box-shadow-cus">Proceed to Checkout</a></td>
+	        			{% else %}
+	        			<td><a href="/cartCheckout/bundle/{{item.id}}" class="btn btn-outline btn-info box-shadow-cus">Proceed to Checkout</a></td>
+	        			{% endif %}
+	        			
+	        		</tr>
+	        		{% endfor %}
+        	</tbody>
+	    </table>
+		{% else %}
+			<div class= "text-center center col-md-12 mt-5">
+    			<h1 class="display-4">No Items In Cart</h1>
+    		</div>
+		{% endif %}
+</div>
+</div>
+<br>
+<br>
+{% endblock %}
+	        			
+	        			
+	        			
+
+
+
+

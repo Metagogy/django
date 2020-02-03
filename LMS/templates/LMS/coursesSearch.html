@@ -1,0 +1,154 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+<section class="section details-page">
+        <div class="details-page">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="row">
+                     <div class="col-md-8">
+                         <h1 class="title-cus">Courses and Bundles</h1>
+                     </div>
+                     <div class="col-md-4">
+                        <form method="GET" action="/matchCase/">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Search Course" name="search">
+                              <div class="input-group-append">
+                                <input type="submit" value="Search" class="btn btn-info">
+                                <!-- < class="input-group-text" id="basic-addon2">@example.com</span> -->
+                              </div>
+                            </div>
+                        </form>
+                     </div>
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.section-padding -->
+        </div><!-- /.overlay -->
+    </section><!-- /.page-name -->
+
+
+    <section class="courses mt-5">
+        <div class="section-padding-about">
+            <div class="container">
+                <h1 class=""><strong>Individual Courses</strong></h1>
+                 <hr>
+                <div class="row mt-5">
+                    <div class="course-items">
+                        <div class="row">
+                            {% for course in courses %}
+                            {% if course.active %}
+                            <div class="col-lg-4 col-md-6">
+                                <a href="/course/{{course.id}}">
+                                <div class="card shadow-lg border-5  mt-5">
+                                    <div><img src="/static/images/{{course.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div><!-- /.item-thumb -->
+                                    <div class="item-details-cus p-4 l-5">
+                                        <h6 class=""><strong>{{course.name}}</strong></h6><!-- /.item-title -->
+                                        <span class="instructor">Duration : {{course.duration}} days</span><!-- /.instructor -->
+
+                                        <span class="instructor">Metagogy</span><!-- /.instructor -->
+                                        <div class="details-bottom">
+                                            <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{course.price}}</span></div><!-- /.course-price -->
+                                            <!-- <div class="rating float-right">
+                                                <input type="hidden" class="rating-tooltip-manual" data-filled="fas fa-star" data-empty="far fa-star" value="4.5" data-fractions="5"/>
+                                            </div> -->
+                                        </div><!-- /.details-bottom -->
+                                    </div><!-- /.item-details -->
+                                </div><!-- /.item -->
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="col-lg-4 col-md-6">
+                                <a href="/course/{{course.id}}">
+                                <div class="card shadow-lg border-5  mt-5">
+                                    <div><img src="/static/images/{{course.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div><!-- /.item-thumb -->
+                                    <div class="item-details-cus p-4 l-5">
+                                        <h6 class=""><strong>{{course.name}}</strong></h6><!-- /.item-title -->
+                                        <span class="instructor">Duration : {{course.duration}} days</span><!-- /.instructor -->
+                                        <span class="instructor">Metagogy</span><!-- /.instructor -->
+                                        <div class="details-bottom">
+                                            <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{course.price}}</span></div><!-- /.course-price -->
+                                            <div class="rating float-right">
+                                                 <span style="background-color: orange; color: white; padding: 3px;">Coming soon</span>
+                                            </div><!-- /.rating -->
+                                        </div><!-- /.details-bottom -->
+                                    </div><!-- /.item-details -->
+                                </div><!-- /.item -->
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section courses section">
+        <div class="section-padding-about">
+            <div class="container">
+
+                    
+                    <h1 class=""><strong>Bundles</strong></h1>
+                        <hr>
+
+                    <div class="course-items">
+                   <div class="row">
+                        {% for bundle in bundles %}
+                        {% if bundle.active %}
+                        <div class="col-lg-4 col-md-6 m-0">
+                            <a href="/bundle/{{bundle.id}}">
+                            <div class="card shadow-lg border-5  mt-5">
+                                <div><img src="/static/images/{{bundle.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div><!-- /.item-thumb -->
+                                <div class="item-details-cus p-4">
+                                    <h6 class="card-title"><strong>{{bundle.name}}</strong></h6><!-- /.item-title -->
+                                    <span class="instructor">Duration : {{bundle.duration}} days</span><!-- /.instructor -->
+                                    <span class="instructor">Metagogy</span><!-- /.instructor -->
+                                    <div class="details-bottom">
+                                        <div class="course-price float-left">
+                                            <span class="currency">INR </span><span class="price">{{bundle.price}}</span></div><!-- /.course-price -->
+                                        <div class="float-right">
+                                            <span class="ribbon btn-warning mt-5" style="background-color: orange; color: white; padding: 3px;">Integrated Internship</span>
+                                        </div>
+<!--                                         <div class="rating">
+                                            <input type="hidden" class="rating-tooltip-manual" data-filled="fas fa-star" data-empty="far fa-star" value="4.5" data-fractions="5"/>
+                                        </div> -->
+                                    </div><!-- /.details-bottom -->
+                                </div><!-- /.item-details -->
+                            </div><!-- /.item -->
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-4 col-md-6">
+                            <a href="/bundle/{{bundle.id}}">
+                            <div class="card shadow-lg border-5  mt-5">
+                                <div><img src="/static/images/{{bundle.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div><!-- /.item-thumb -->
+                                <div class="item-details-cus p-4 l-5">
+                                    <h6 class=""><strong>{{bundle.name}}</strong></h6><!-- /.item-title -->
+                                    <span class="instructor">Metagogy</span><!-- /.instructor -->
+                                    <span class="instructor">Duration : {{course.duration}} days</span><!-- /.instructor -->
+                                    <div class="details-bottom">
+                                        <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{bundle.price}}</span></div><!-- /.course-price -->
+                                        <div class="rating float-right">
+                                        <span class="ribbon btn-warning" style="background-color: orange; color: white; padding: 3px;">Coming Soon</span>
+                                      </div><!-- /.rating -->
+                                    </div><!-- /.details-bottom -->
+                                </div><!-- /.item-details -->
+                            </div><!-- /.item -->
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        
+                  </div><!-- /.row -->
+                </div>
+            </div><!-- /.row -->
+
+        </div>
+ 
+</section><!-- /.courses -->
+{% endblock %}

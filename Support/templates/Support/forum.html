@@ -1,0 +1,160 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+	<h1 class="text-center display-2 text-white">{{cb.name}}</h1>
+</section>
+<div class="container mt-5 mb-5 ">
+	<div class="card bg-gradient-warning shadow-lg border-0">
+		<form class="navbar-form navbar-right card-body" role="search" action="/searchQuestions/">
+			<div class="form-row">
+
+			    <div class="form-group col-lg-10">
+			        <input type="text" class="form-control form-control-alternative is-valid" placeholder="Search for a question " name="kword" autocomplete="off"/>
+			        <input type='hidden' name='id' value='{{courseid}}'>
+			    </div>
+			    <div class="form-group col-lg-2">
+			    	<button type="submit" class="btn form-control btn-white">Submit</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="container card shadow">
+	<div class="row card-body">
+	<div class="col-md-4">
+		<h3>Ask a question</h3>
+		<p>The questions which are asked here can solve your problem with the help of group memebers. And can be a ready solutions for upcoming learners <i class="fas fa-smile"></i></p>
+		<!-- <div class="clearfix"></div> -->
+		<a class="btn btn-info form-control mb-3 mt-3" href="/unClosedQues/{{courseid}}">Answer These Questions</a>
+		<a class="btn btn-default form-control mb-3" href="/globalize/{{courseid}}">Globalize your Questions</a>
+		<a class="btn btn-warning form-control" href="/ToBeAnswered/{{courseid}}">Direct Questions To You</a>
+	</div>
+	<div class="col-md-8">
+		
+		<form action="/questionUpload/{{courseid}}/" method="post" enctype="multipart/form-data" class="">{% csrf_token %}
+		
+			<input type="hidden" value="{{courseid}}" name="course" placeholder="Your Question">
+			<p>
+			<input type="text" value="" name="about" placeholder="" class="form-control">
+<br>
+				<textarea rows="11" id="question" name="question" value="" class="form-control"> </textarea>
+				<div class="form-group">
+                    <div class="checkbox checkbox-info">
+                        <div class="custom-control custom-checkbox mb-3">
+			              <input class="custom-control-input" id="customCheck2" type="checkbox" name="globalize">
+			              <label class="custom-control-label" for="customCheck2">
+			                <span>Globalize This</span>
+			              </label>
+			            </div>
+                    </div> 
+                </div>	
+				<input type="submit" id="submitbutton" class="btn btn-default publish-question" value="submit" >
+			</p>
+				
+		</form>
+	</div>
+	</div>
+</div>
+	
+<div class="container mt-5">
+	<h2 class="display-2 text-center">Questions</h2>
+	<hr>
+ <div class="row mt-5">
+    <div class="col-md-8">
+        {% if qns %}
+        	{% for q in qns %}
+        	<div class="card shadow mb-3">
+        		<a href="/quesAnswers/{{q.id}}/">
+        			<div class="card-body">
+		        	<div class="row mb-3">
+		        		<div class="col-md-8">
+							<a href="/quesAnswers/{{q.id}}/"><h5 class="text-default">{{q.about}}</h5></a>
+						</div>
+						{% if q.raised_by == request.user and q.is_closed == False %}
+						<div class="col-md-4">
+							<a href="/closeQues/{{q.id}}/" class="btn btn-warning rounded">Close Question</a>
+						</div>
+						{% elif q.raised_by == request.user and q.is_closed == True %}
+						<div class="col-md-4"> 
+							<button class="btn btn-warning rounded">Question Closed </button>
+						</div>
+						{% endif %}
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-2">
+							<span><i class="fas fa-user text-info"></i> {{q.raised_by.username}}</span>
+						</div>
+						<div class="col-md-5">
+							<span><i class="fas fa-clock text-success"></i> {{q.timestamp}}</span>
+						</div>
+						<div class="col-md-3">
+							<span><i class="fas fa-pen-square text-warning"></i> Answers {{q.postanswer_set.all|length}} </span>
+						</div>
+						<div class="col-md-2">
+							{% if q.is_global != False %}
+				        		<i class="fas fa-globe-asia text-success"></i>: YES
+			        		{% else %}
+				        		<i class="fas fa-globe-asia  text-success"></i>: NO
+			        		{% endif %}
+						</div>	
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+						<span>Keywords: &nbsp;</span>
+						{% for k in q.keywords %}
+							{% for key,value in k.items %}
+								<a class="btn btn-sm btn-info" href="/keywordSearch/?id={{courseid}}&key={{key}}">{{key}}</a>											
+							{% endfor %}
+						{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% endfor%}
+				
+		{% else %}
+			<br/><br/>
+			<h3 class="text-center">No Questions Found !!!!!!!! </h3>
+		{% endif %} 
+	</div>
+		
+	<div class="col-md-4">
+		<div class="mb-5">
+			<ul class="list-group shadow rounded">
+				<li class="list-group-item bg-default text-white"><strong>Questions</strong></li>
+				<li class="list-group-item"><i class="fa fa-question-circle text-default" aria-hidden="true"></i> Total Questions ( <span>{{totalqns}}</span> )</li>
+				<li class="list-group-item"><i class="fa fa-comments comments text-default" aria-hidden="true"></i> Closed Questions ( <span>{{totalClosedQues}}</span> )</li>
+				<li class="list-group-item"><i class="fa fa-comments comments text-default" aria-hidden="true"></i> Unclosed Questions ( <span>{{totalUnclosed}}</span> )</li>
+			</ul>
+		</div>
+		<div class="widget widget_highest_points mb-5">
+			<ul class="list-group shadow rounded">
+				<li class="list-group-item bg-default text-white"><strong>Ask Your Team Member</strong></li>
+				{% for i in group_mem %}
+				{% if i.user != request.user %}
+				<li class="list-group-item">
+					<a href="/A2AQuestionUpload/{{courseid}}/{{i.user.id}}/">
+						<div class="row">
+							<div class="col-md-2">
+								<i class="fas fa-user text-default"></i>
+							</div>
+							<div class="col-md-10">
+								<h6>{{i.user.username}} </h6>
+							</div>
+						</div>
+					</a>
+				</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+    
+</div>
+
+
+
+{% endblock %}
+			

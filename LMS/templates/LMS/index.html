@@ -1,0 +1,604 @@
+{% extends 'home.html' %}
+{% block content %}
+  {% if request.user.is_anonymous %}
+      <section class="bg-dark text-light vh-80 header-inner p-5 jarallax o-hidden" data-overlay data-jarallax data-speed="0.2">
+      <img src="/static/assets/img/inner-1.jpg" alt="Image" class="jarallax-img opacity-30">
+       <div class="container">
+          <div class="row"  data-aos="fade-right" data-aos-delay="500">
+            <div class="col-xl-8 col-lg-8 col-md-8 layer-3 aos-init aos-animate">
+              <h1 class="display-4 text-white">
+            Code . Collab . Career
+          </h1>
+              <div class="mb-4">
+                <p class="lead text-white">
+                  Platform that makes learning Simple.
+                </p>
+              </div>
+              <a href="/courses" class="btn btn-lg btn-white">Explore Courses</a>
+              {% if request.user.is_anonymous %}
+                  <a href="/register" class="btn btn-lg btn-wh mx-1 btn-danger">Register Now</a>
+                  </a>
+                  {%else%}
+                  <a href="" class="btn btn-lg btn-dark mx-1">Your Courses</a>
+                  {% endif %}
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4">
+              <form role="form" action="/auth/" method="POST">{% csrf_token %}
+                  <div class="form-group mb-3">
+                    <label for="course-name-1">Your Email</label>
+                    <div class="input-group input-group-alternative">
+                      <input class="form-control form-control-lg" placeholder="Email" type="email" name="user_name">
+                    </div>
+                  </div>
+                  <label for="course-name-1">Password</label>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <input class="form-control form-control-lg" placeholder="Password" type="password" name="password">
+                    </div>
+                  </div>
+                  <div class="custom-control custom-control-alternative custom-checkbox">
+                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                    <label class="custom-control-label" for=" customCheckLogin"><span>Remember me</span></label>
+                  </div>
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-primary my-4 form-control form-control-lg" value="Sign in">
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      <div class="decoration-wrapper">
+        <div class="decoration bottom right d-none d-md-block" data-jarallax-element="100 100">
+          <img class="bg-primary-2" src="assets/img/decorations/deco-blob-1.svg" alt="deco-blob-1 decoration" data-inject-svg />
+        </div>
+      </div>
+      <div class="divider flip-x">
+        <img src="assets/img/dividers/divider-1.svg" alt="graphical divider" data-inject-svg />
+      </div>
+    </section>
+
+      <div data-overlay class="bg-primary-3 o-hidden">
+      <div class="position-absolute o-hidden top-0">
+        <div class="decoration right bottom scale-2" data-aos="fade-right">
+          <img class="bg-primary-2" src="/static/assets/img/decorations/deco-blob-2.svg" alt="deco-blob-2 decoration" data-inject-svg />
+        </div>
+        <div class="decoration right bottom scale-3">
+          <img class="bg-white" src="/static/assets/img/decorations/deco-dots-6.svg" alt="deco-dots-6 decoration" data-inject-svg />
+        </div>
+      </div>
+      <!-- <section class="">
+        <div class="container">
+          <div class="row"  data-aos="fade-right" data-aos-delay="500">
+            <div class="col-xl-8 col-lg-8 col-md-8 layer-3 aos-init aos-animate">
+              <h1 class="display-4 text-white">
+            Code . collab . Career
+          </h1>
+              <div class="mb-4">
+                <p class="lead text-white">
+                  Platform that makes learning Simple.
+                </p>
+              </div>
+              <a href="/courses" class="btn btn-lg btn-white">Explore Courses</a>
+              {% if request.user.is_anonymous %}
+                  <a href="/register" class="btn btn-lg btn-wh mx-1 btn-danger">Register Now</a>
+                  </a>
+                  {%else%}
+                  <a href="" class="btn btn-lg btn-dark mx-1">Your Courses</a>
+                  {% endif %}
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4">
+              <form role="form" action="/auth/" method="POST">{% csrf_token %}
+                  <div class="form-group mb-3">
+                    <label for="course-name-1">Your Email</label>
+                    <div class="input-group input-group-alternative">
+                      <input class="form-control form-control-lg" placeholder="Email" type="email" name="user_name">
+                    </div>
+                  </div>
+                  <label for="course-name-1">Password</label>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <input class="form-control form-control-lg" placeholder="Password" type="password" name="password">
+                    </div>
+                  </div>
+                  <div class="custom-control custom-control-alternative custom-checkbox">
+                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                    <label class="custom-control-label" for=" customCheckLogin"><span>Remember me</span></label>
+                  </div>
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-primary my-4 form-control form-control-lg" value="Sign in">
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    </div>
+    <section class="bg-primary-alt">
+      <div class="container">
+        <div class="row justify-content-between o-hidden">
+          <div class="col-md-6">
+            <h2 class="h1">Developed by industry professionals.</h2>
+            <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> -->
+            <ul class="d-flex flex-wrap list-unstyled mt-5">
+              <li class="mr-4 mb-5" data-aos="fade-up" data-aos-delay="100">
+                <img class="icon icon-logo icon-md bg-dark opacity-30" src="/static/assets/img/logos/brand/intercom.svg" alt="icon" data-inject-svg />
+              </li>
+              <li class="mr-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+                <img class="icon icon-logo icon-md bg-dark opacity-30" src="/static/assets/img/logos/brand/slack.svg" alt="icon" data-inject-svg />
+              </li>
+              <li class="mr-4 mb-5" data-aos="fade-up" data-aos-delay="300">
+                <img class="icon icon-logo icon-md bg-dark opacity-30" src="/static/assets/img/logos/brand/spotify.svg" alt="icon" data-inject-svg />
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-5 col-md-6" data-aos="fade-left">
+            <div data-flickity='{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true, "prevNextButtons": false }'>
+              <div class="carousel-cell mx-3 pb-1">
+                <div class="card card-body">
+                  <div class="d-flex mb-3">
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                  </div>
+                  <div class="my-md-2 flex-grow-1">
+                    <h4>
+          &ldquo;AI Educator made my learning easy.&rdquo;
+      </h4>
+                  </div>
+                  <div class="avatar-author align-items-center">
+                    <img src="/static/assets/img/avatars/male-1.jpg" alt="Avatar" class="avatar">
+                    <div class="ml-2">
+                      <h6>Ravi Kiran</h6>
+                      <span>Student</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="carousel-cell mx-3 pb-1">
+                <div class="card card-body">
+                  <div class="d-flex mb-3">
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                  </div>
+                  <div class="my-md-2 flex-grow-1">
+                    <h4>
+          &ldquo;Finally, a template that covers all bases for a bootstrapped startup.&rdquo;
+      </h4>
+                  </div>
+                  <div class="avatar-author align-items-center">
+                    <img src="/static/assets/img/avatars/male-4.jpg" alt="Avatar" class="avatar">
+                    <div class="ml-2">
+                      <h6>Marco Origez</h6>
+                      <span>Developer</span>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="carousel-cell mx-3 pb-1">
+                <div class="card card-body">
+                  <div class="d-flex mb-3">
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                    <img class="icon bg-warning" src="/static/assets/img/icons/interface/star.svg" alt="star interface icon" data-inject-svg />
+                  </div>
+                  <div class="my-md-2 flex-grow-1">
+                    <h4>
+          &ldquo;I fell in love with the way course is designed.&rdquo;
+      </h4>
+                  </div>
+                  <div class="avatar-author align-items-center">
+                    <img src="/static/assets/img/avatars/male-1.jpg" alt="Avatar" class="avatar">
+                    <div class="ml-2">
+                      <h6>Shanmuka sreenivas</h6>
+                      <span>Developer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-lg">
+      <div class="container">
+        <h2 class="text-center display-4 mx-xl-6">Why AI Educator ? </h2>
+        <div class="row row-grid align-items-center aos-init aos-animate" data-aos="fade-up" >
+          <div class="col-md-6 order-md-1">
+            <div class="pr-md-5">
+              <div class="icon icon-lg mb-5">
+                <i class="fas fa-cog fa-spin fa-3x"></i>
+              </div>
+              <h2>Our features</h2>
+              <p class="lead">The platform comes with three awesome features to help you get started faster.</p>
+              <ul class="list-unstyled my-3">
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg" src="/static/assets/img/icons/theme/communication/group.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-2">AI Powered Grouping</span>
+                  </li>
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg" src="/static/assets/img/icons/theme/files/selected-file.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-2">AI Powered Dynamic Content</span>
+                  </li>
+                  <li class="d-flex align-items-center my-2">
+                    <img class="icon icon-lg" src="/static/assets/img/icons/theme/communication/shield-user.svg" alt="icon" data-inject-svg />
+                    <span class="h6 mb-0 ml-2">AI Assistance</span>
+                  </li>
+                </ul>
+
+            </div>
+          </div>
+          <div class="col-md-6 order-md-2">
+            <a href="#" class="fade-page">
+              <img src="/static/images/features.png" class="rounded shadow-3d hover-shadow-3d mb-3 mb-md-0 border">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-primary-alt">
+        <div class="container text-center">
+            <h2 class="display-4 mx-xl-6">
+                <span class="wai">Technology</span>
+            </h2>
+            <h3 class="mt-5 mb-5">A disruptive technology which will change the way self learning take place optimally.</h3>
+        </div>
+        <div class="container">
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6">
+            <div class="card bg-default shadow border rounded">
+              <img src="/static/images/banner/femi.jpg" class="card-img shadow-3d hover-shadow-3d">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pl-md-5">
+              <h3>Maximize Learner Familiarity</h3>
+              <p class="lead">Our ML algorithms peek into the minds of individual learners and calibrate Content, MCQs, Assignments so that the learner is always in his zone of proximal development(ZPD). In this zone, learner feels confident and will be highly productive which in turn makes programming fun and improves learning rate.</p>
+              <a href="/courses" class="btn btn-primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6">
+            <div class="pl-md-5">
+              <h3>Maximize Learner Mental Effort</h3>
+              <p class="lead">Our algorithms also calibrate the assignments so that the learner has to make efforts to solve them. Since every individual’s problem solving capabilities are different, and even an individual’s capability rapidly improves with our system, our calibrated assignments continue to challenge him/her.</p>
+              <a href="/courses" class="font-weight-bold btn btn-warning mt-5">Get Started</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-warning shadow border-0">
+              <img src="/static/images/banner/mental1.jpg" class="card-img shadow-3d hover-shadow-3d">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-primary-alt">
+      <div class="container">
+        <div class="row" data-aos="fade-up">
+        <div class="col-md-6">
+            <div class="card bg-success shadow border-0">
+              <img src="/static/images/banner/group.jpg" class="card-img shadow-3d hover-shadow-3d">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pl-md-5">
+              <h3>Group learning and Mentoring</h3>
+              <p class="lead">Our system has built-in mechanism to include all advantages of group learning.
+                </p>
+                <ul>
+                    <li>
+                        <p>Brain storming.</p>
+                    </li>
+                    <li><p>Bench marking achievements for the ultimate motivation.</p></li>
+                    <li><p>Encouragement, course correction by group members without exposing him to some of the negatives of classroom learning.</p></li>
+                </ul>
+              <a href="/courses" class="font-weight-bold btn btn-success mt-5">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6">
+            <div class="pl-md-5">
+              <h3>Maximize Rate of Learning</h3>
+              <p class="lead">Using ML based accurate predictions, indicate root cause analysis of lower learning rates, and indicates time required to reach an expert benchmark.</p>
+              <a href="/courses" class="font-weight-bold btn btn-primary mt-5">Get Started</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-primary shadow border-0">
+              <img src="/static/images/banner/problemS.jpg" class="card-img hover-shadow-3d shadow-3d">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-primary-3">
+      <div class="container">
+        <h2 class="text-center display-5 text-white" data-aos="fade-up">Join AI Educator</h2>
+            <!-- <p class="lead text-white">Reasons should be reasonable to join a Course.</p> -->
+        <div class="row mt-5 text-center text-white" data-aos="fade-up">
+          <div class="col-lg-4">
+            <div class="icon">
+              <i class="fas fa-hourglass-half fa-3x mb-5"></i>
+            </div>
+            <h5 class="mt-3 text-white">As the time is limited</h5>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon">
+              <i class="fas fa-clock fa-3x"></i>
+            </div>
+            <h5 class="mt-3 text-white">Master a course in 45 days</h5>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon">
+              <i class="fas fa-users  fa-3x"></i>
+             </div>
+            <h5 class="mt-3 text-white">All Advantages of Group Learning</h5>
+          </div>
+        </div>
+        <div class="row row-grid mt-5 text-center text-white" data-aos="fade-up">
+          <div class="col-lg-4">
+            <div class="icon">
+              <i class="fas fa-desktop  fa-3x"></i>
+            </div>
+            <h5 class="mt-3 text-white">Inbuilt Forum</h5>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon">
+            <i class="fas fa-user  fa-3x"></i>
+          </div>
+            <h5 class="mt-3 text-white">Dedicated Mentor</h5>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon">
+              <i class="fas fa-user-friends  fa-3x"></i>
+             </div>
+            <h5 class="mt-3 text-white">Mock Interviews</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section class="bg-primary-alt pt-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-8 col-lg-9">
+            <h3 class="h2">Frequently Asked Questions</h3>
+            <div class="my-4">
+              <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
+                <div data-target="#panel-1" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                  <span class="h6 mb-0">Can I change plans later on?</span>
+                  <img class="icon" src="" alt="plus interface icon" data-inject-svg="">
+                </div>
+                <div class="collapse" id="panel-1">
+                  <div class="pt-3">
+                    <p class="mb-0">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
+                <div data-target="#panel-2" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-2">
+                  <span class="h6 mb-0">What is the difference between Pro and Ultimate?</span>
+                  <img class="icon" src="" alt="plus interface icon" data-inject-svg="">
+                </div>
+                <div class="collapse" id="panel-2">
+                  <div class="pt-3">
+                    <p class="mb-0">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
+                <div data-target="#panel-3" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-3">
+                  <span class="h6 mb-0">Can I try before I buy?</span>
+                  <img class="icon" src="" alt="plus interface icon" data-inject-svg="">
+                </div>
+                <div class="collapse" id="panel-3">
+                  <div class="pt-3">
+                    <p class="mb-0">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
+                <div data-target="#panel-4" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-4">
+                  <span class="h6 mb-0">Do you offer bulk discounts?</span>
+                  <img class="icon" src="" alt="plus interface icon" data-inject-svg="">
+                </div>
+                <div class="collapse" id="panel-4">
+                  <div class="pt-3">
+                    <p class="mb-0">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
+                <div data-target="#panel-5" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-5">
+                  <span class="h6 mb-0">Is this a subscription service?</span>
+                  <img class="icon" src="" alt="plus interface icon" data-inject-svg="">
+                </div>
+                <div class="collapse" id="panel-5">
+                  <div class="pt-3">
+                    <p class="mb-0">
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span>Still have questions? <a href="#" class="hover-arrow">Get in touch</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <div class="container mt-5">
+      <div class="row mb-5">
+          <div class="col">
+            <div class="card card-body border-0 o-hidden mb-0 bg-primary text-light">
+              <div class="position-relative d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="h3 text-center mb-md-0">Start building beautiful career</div>
+                <a href="/login" class="btn btn-lg btn-white">
+                  Start Now
+                 </a>
+              </div>
+              <div class="decoration layer-0">
+                <img class="bg-primary-2" src="" alt="deco-blob-1 decoration" data-inject-svg="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+   
+  {% else %}
+  <section class="p-0 pt-2 pb-2 pl-5 bg-info">
+    <div class="row">
+      <div class="col-md-9">
+        <h4 class="h2 ml-5 text-white"><img  width="100" height="100" src="/static/images/avatar.jpg" class="rounded-circle " /><span class="ml-5">Hi {{request.user.username}}, Welcome back.</span> <a href="/profile" class="btn btn-sm btn-info-outline">Profile</a></h4>
+      </div>
+      <!-- <div class="col-md-3 row">
+        <div class="col-md-4 h5 text-white text-center mt-3">
+        {{regCourses.count}}<br>
+        Courses
+        </div>
+        <div class="col-md-4 h5 text-white text-center mt-3">
+        {{rewards}}<br>
+        Rewards
+        </div>
+        <div class="col-md-4 h5 text-white text-center mt-3">
+          0<br>
+          Badges
+        </div>
+      </div> -->
+    </div>
+  </section>
+   <!--  <section class="section pb-0 bg-gradient-info">
+      
+      <div class="container"> -->
+        <!-- <div class="row row-grid align-items-center">
+          <div class="col-md-6 order-lg-2 ml-lg-auto">
+            <div class="position-relative pl-md-5">
+              <img src="/static/images/ill-2.svg" class="img-center img-fluid">
+            </div>
+          </div> -->
+          <!-- <div class="col-lg-6 order-lg-1">
+          </div> -->
+            <!-- <div class="card shadow shadow-lg--hover mt-5 mb-5">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                      <i class="fas fa-reply"></i>  
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-success">Resume from where you have left.</h5>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <img src="/static/images/Python.jpg" class="img-left img-fluid">
+                      </div>
+                      <div class="col-md-7">
+                      <div class="">
+                      <div class="progress-info">
+                        <div class="progress-label">
+                          <span>progress</span>
+                        </div>
+                        <div class="progress-percentage">
+                          <span>60%</span>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                      </div>
+                      </div>
+                     </div>
+                    </div>
+                    <a href="#" class="btn btn-1 btn-outline-success mt-3 float-right">Take me there</a>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="card shadow shadow-lg--hover mt-5">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                      <i class="ni ni-active-40"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-warning">Modular Components</h5>
+                    <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever.</p>
+                    <a href="#" class="text-warning">Learn more</a>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          <!-- </div>
+        </div>
+      </div> -->
+      <!-- SVG separator -->
+      <!-- <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div> -->
+    <!-- </section> -->
+   
+    
+  {% endif %}
+  {% if request.user.is_authenticated %}
+<input type="hidden" id="data" value="{{final_data_list}}">
+
+<section class="special">
+  <div class="container">
+    <h1 class=""></h1>
+    <div id="me"></div>
+  </div> 
+</section>
+  {% endif %}
+
+ <!-- <section class="section section-lg bg-secondary">
+
+    <div class="container">
+      <div class="card bg-gradient-warning shadow-lg border-0">
+        <div class="p-5">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h3 class="text-white">Get weekly updates</h3>
+              <input type="email" name="email" placeholder="Email" class="form-control">
+            </div>
+            <div class="col-lg-3 ml-lg-auto mt-5">
+              <a href="#" class="btn btn-white">Subscribe Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+   
+
+{% endblock %}

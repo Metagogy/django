@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="" style="transform: translateY(-107.5px);"></div>
+        <div class="container">
+          <div class="banner_content text-center">
+            <h2>Share Your knowledge for below Questions</h2>
+            <div class="page_link">
+              
+            </div>
+          </div>
+        </div>
+    </div>
+</section><br/>
+<div class="container"> 
+    {% for q in totalqns %}
+        <article class="question question-type-normal">
+            <h2>
+                <a href="/quesAnswers/{{q.id}}/">{{q.query}}</a>
+            </h2>
+            <div class="question-author">
+                <a href="#" original-title="ahmed" class="question-author-img tooltip-n">
+                    <img alt="" src="https://2code.info/demo/html/ask-me/images/demo/avatar.png"></a>
+            </div>
+            <div class="question-inner">
+                <div class="clearfix"></div>
+                <p class="question-desc"></p>
+            
+                <span class="question-category text-uppercase"><i class="fa fa-user" aria-hidden="true"></i> {{q.raised_by}}</span>
+                <span class="question-date"><i class="fa fa-clock-o" aria-hidden="true"></i> {{q.timestamp}}</span>
+                <span class="question-comment"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp;Answers( {{q.postanswer_set.all|length}} )</span>
+                <span class="question-view"><i class="fa fa-user" aria-hidden="true"></i>
+                {% if q.is_global != False %}
+                    <span>is global: &nbsp;&nbsp;<i class="material-icons" style="font-size:20px">YES</i></span>
+                {% else %}
+                    <span>is global: &nbsp;&nbsp;<i class="material-icons" style="font-size:20px">NO</i></span>
+                {% endif %}
+                </span>
+            </div>
+                                
+        </article>             
+    {% endfor %}        
+{% endblock %}

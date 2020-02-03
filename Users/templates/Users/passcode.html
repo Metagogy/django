@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% block content %}
+<br>
+<br>
+<div class = "container" >
+	{% if error %}
+		<div class="alert alert-danger">
+				<strong>{{ error }}</strong>
+		</div>
+	{% else %}
+		<div class="alert alert-success">
+				<strong>{{message}}</strong> 
+		</div>
+	{% endif %}
+	<div>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+</div>
+<br>
+<br>
+{% endblock %}

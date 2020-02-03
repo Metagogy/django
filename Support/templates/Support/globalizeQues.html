@@ -1,0 +1,54 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="" style="transform: translateY(-107.5px);"></div>
+        <div class="container">
+          <div class="banner_content text-center">
+            <h2>Globalize Your Questions</h2>
+            <div class="page_link">
+              
+            </div>
+          </div>
+        </div>
+    </div>
+</section><br/>
+<div class="container"> 
+    
+    {% if qns %}
+            
+        {% for q in qns %}
+        <div class="card" style="box-shadow: 5px 10px 18px #888888;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <pre style="white-space: pre-wrap;">{{q.query}}</pre><br/>
+                    </div>
+                    <div class="col-md-2 ">
+                        {% if q.is_global == False %}
+                            <a href="/globalized/{{q.id}}/" class="genric-btn success circle arrow"><i class="em em-earth_asia"></i>&nbsp;&nbsp;Globalize <span class="lnr lnr-arrow-right"></span></a>
+                        {% else %}
+                            <button  class="genric-btn primary circle arrow">Globalized</button>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-2 ">
+                        {% if q.raised_by == request.user and q.is_closed == False %}
+                                <a  class="genric-btn danger circle arrow" href="/closeQues/{{q.id}}/"> Close Question</a>
+                                {% elif q.raised_by == request.user and q.is_closed == True %}
+                                <div class="genric-btn danger circle arrow"> Question Closed </div>
+                                
+                        {% endif %}
+                    </div>
+                </div>
+                    
+                </div>
+            </div><br/>
+        
+        {% endfor%}
+        {% else %}
+            <br/><br/>
+            <h3 class="text-center">No Questions Found !!!!!!!! </h3>
+        {% endif %} 
+    </div>
+{% endblock %}

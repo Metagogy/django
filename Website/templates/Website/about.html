@@ -1,0 +1,89 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+
+    <section class="section about-us">
+        <div class="section-padding-about">
+            <div class="container">
+                <div class="top-content text-center">
+                    <h4 class="section-title">About us</h4><!-- /.section-title -->
+                
+
+                </div><!-- /.top-content -->
+            </div>
+        </div> 
+        <div class="">
+            <div class="container mb-5">
+                    <h5 class="">
+                        <strong>
+                            About Our Founders:
+                        </strong>     
+                    </h5>
+                <div class="about-list mt-3">
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> 27 years R&D in engineering fields such as DSP, sensors, control systems, simulation software.</p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> 25+ years close interaction with technical colleges.</p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> Core competency in AI based product development.</p>
+                </div>
+                    <h5 class="">
+                        <strong>
+                            Our Innovations:
+                        </strong>     
+                    </h5>
+                <div class="about-list mt-3" data-aos="fade-right">
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> Control system for various missile systems.</i></p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> Small arm shooting training systems.</i></p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> AI. IOT based predective maintenance and root cause analysis for tens of thousands solar power systems.</i></p>
+                </div>
+                    <h5 class="">
+                        <strong>
+                            Patents Pending:
+                        </strong>     
+                    </h5>
+                <div class="about-list mb-5 mt-3" data-aos="fade-right">
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> AI(Machine Learning), Cloud based eLearning system for cloud and AI Courses.</i></p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> AI IOT based Smart Remote Monitoring.</i></p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> Air-To-Air missile control system.</i></p>
+                    <p  data-aos="fade-right"><i class="fa fa-check-circle"></i> Innovation Solar Water Pumping Systems.</i></p>
+                </div>
+                <img src="/static/images/banner/history.jpg" alt="About Image" class="img-center img-fluid shadow shadow-lg">
+
+                <div class="row mt-5">
+                    <div class="col-md-6" data-aos="fade-right">
+                        <h5 class="section-title">Our mission</h5>
+                        <p class="mission">
+                                Using ML to provide smarter learning solutions.
+                        </p>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left">
+                        <h5 class="section-title">Our visioin</h5>
+                        <p class="mission">
+                                ML based technology to accelerate learning at the same time humanize learning.
+                        </p>
+                        <p class="mission">
+                                To change the way people learn. 
+                        </p>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+    </section>
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.js-example-basic-single').select2(
+      {
+        placeholder: 'Find a Course',
+      });
+    $("#courseSearch").on('select2:select', function (e){
+      window.location.href=e.params.data.id;
+    })
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<section class="section details-page">
+	<h1 class="text-center display-2 text-white">Question and Answers</h1>
+</section>
+<br>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+	<h4 class="mb-4 text-danger questions">Question</h4>
+		<h2 >
+			<pre>{{qns.query}} </pre>
+		</h2>	
+		<span class="question-category text-uppercase"><i class="em em-man_in_tuxedo"></i>&nbsp;{{qns.raised_by}}</span>
+			<span>{{qns.timestamp}}</span>	
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+		<br/>
+		<h4>Answers</h4><hr>
+	        {% if answers %}
+	        	{% for ans in answers %}
+				 <p><pre>{{ans.answer}}</pre></p>	
+						<span>{{ans.answered_by}}</span>
+						<span>{{ans.timestamp}}</span>
+						  {% if ans.verified_by == None %}
+			        		<p>Not Verified</p>
+			                {% else %}
+			                <p>verified</p>
+		        		{% endif %}  
+	
+		        {% endfor%}
+		    {% else %}
+			
+			<h4>Not Yet Answered</h4>
+			{% endif %}	
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <h4>Reply Answer</h4>
+    <form action="/A2AoutgoingAnswers/{{qns.id}}/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+        <textarea id="comment" aria-required="true" cols="58" rows="8"  name="answer" required></textarea>
+        <br>
+        <input type="submit" value="submit" class="btn btn-info">
+    </form>
+</div>
+</div>
+</div>          
+
+<br>
+{% endblock %}
+			

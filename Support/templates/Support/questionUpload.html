@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="container quesAnswers">
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div>
+            
+            <h3>Raise an Issue</h3>
+            
+        </div>
+      <!--   <form action="/questionUpload/{{course.id}}/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+            <input type="hidden" value="{{course.id}}" name="course">
+
+                <h4>Question</h4>
+                    <textarea type="text" name="question"  class="form-control"></textarea>
+                <h4>Description</h4>
+                    <textarea id="vdt_table_textarea" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"  style="height: 10em;" type="text" name="description"  class="form-control">
+
+                    </textarea>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-success">
+                            <input id="checkbox1" type="checkbox" name="globalize">
+                            <label for="checkbox1">Globalize Question</label>
+                        </div> 
+                    </div>
+                <br/>
+                
+                <input type="submit" value="submit"  class="btn btn-primary">
+        </form> -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+</div>
+</div>
+
+{% endblock %}

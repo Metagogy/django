@@ -1,0 +1,494 @@
+.card .card-blockquote {
+    position: relative;
+    padding: 1rem;
+}
+
+.details-page {
+  margin: 0;
+  width: 100%;
+  font-family: "Exo", sans-serif;
+  color: #fff;
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card{
+  line-height: 2;
+  border-radius : 5px;
+  color: black;
+}
+
+.card img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.rating{
+  color: orange;
+}
+
+.courses img {
+    border-radius: 5px;
+}
+
+p{
+  text-align: justify;
+}
+
+.info, .info .info-list{
+    list-style-type: none;
+}
+
+
+aside .info li {
+    border-bottom: 1px solid #cfd8dc;
+    color: #90a4ae;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.3em 1em;
+    width: 100%;
+}
+
+aside .info ul {
+    border: 1px solid #cfd8dc;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.curriculum-details .content-table {
+    border: 1px solid #cfd8dc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.curriculum-details ul, .curriculum-details ol {
+    margin: 0;
+    padding: 0;
+}
+
+.curriculum-details .title {
+    background-color: #eceff1;
+    color: #37474f;
+    display: inline-block;
+    margin: 0 !important;
+    padding: .825em;
+    width: 100%;
+}
+
+.curriculum-details ul li a, .curriculum-details ol li a {
+    color: #6d8591;
+}
+
+.single-item-details .title, .course-single-details .title {
+    color: #37474f;
+    font-size: 1em;
+    font-weight: 700;
+    margin: 1.875em 0 1.65em;
+    text-transform: capitalize;
+}
+
+.curriculum-details ul li span.float-left, .curriculum-details ol li span.float-left {
+    width: 75%;
+}
+.float-left {
+    float: left!important;
+}
+
+.curriculum-details ul li, .curriculum-details ol li {
+    border-top: 1px solid #cfd8dc;
+    color: #6d8591;
+    display: inline-block;
+    font-size: 1em;
+    list-style: none;
+    padding: 1.2em 1.125em;
+    width: 100%;
+}
+
+.curriculum-details-title-cus {
+    background-color: #1c89d2;
+    color: white;
+    display: inline-block;
+    margin-top: 0.5em !important;
+    padding: 1.0em;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.error-contents {
+    font-size: 2em;
+    text-align: center;
+    margin: 5.625em;
+}
+
+.about-list
+{
+  padding-left: 1em;
+}
+
+.mission{
+  font-weight: 900;
+}
+#googleMaps {
+    height: 30em;
+    margin: 5.625em 0 2.625em;
+}
+
+.contact .item .item-icon {
+    background-color: #0d47a1;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 2em;
+    height: 70px;
+    line-height: 77px;
+    width: 70px;
+    margin: 0 auto;
+}
+
+.contact .item {
+    color: #90a4ae;
+    font-size: 1em;
+    margin: 1.8em 0;
+}
+
+.carousel-caption{
+  color: #fff;
+  top: 70%;
+}
+
+.carousel-inner img {
+  max-height: 100%;
+}
+
+div.image {
+   content:url(/static/images/banner/land5.jpg);
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+
+.ul_list{
+ list-style-type: none; 
+}
+
+.navbar {
+    display: flex;
+    padding: 0rem 0rem; 
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.Blink {
+
+  animation: blinker 0.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+
+}
+
+@keyframes blinker {  
+
+  from { opacity: 1; }
+
+  to { opacity: 0; }
+
+}
+
+#mygroup{
+  width: 140px;
+  position: fixed;
+  top: 30vh;
+  right:0;
+
+}
+
+.online {
+  color: green;
+  font-size: 0.5em;
+  border-radius: 50%;
+  /*display: inline;*/
+  float: right;
+  margin-top: 5px;
+}
+
+.offline {
+  border-radius: 50%;
+  font-size: 0.5em;
+  background: gray;
+  /*display: inline;*/
+  float: right;
+  margin-top: 5px;
+}
+
+.chi{
+  float: ;
+}
+/* start from here000000000000000000000000000000000000000000000000 */
+/* The radio */
+
+
+/* Hide the browser's default radio button */
+body{
+overflow-x: hidden;
+}
+
+
+.sideTop{
+  height: 60vh;
+  overflow-y: auto;
+
+}
+
+
+
+*::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: lightgray;
+}
+
+
+iframe::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+
+iframe::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+iframe::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: lightgray;
+}
+
+
+@media only screen and (min-width: 960px)
+.book-page {
+     box-shadow: 0 0 0px 0px rgba(50,50,50,.75); 
+}
+
+
+#groupButton{
+  position: fixed;
+  top: 25vh;
+  right: 0;
+  z-index: 1;
+}
+
+.description{
+  height: 50px;
+}
+
+
+
+
+.test{
+  min-height: 70vh;
+}
+
+
+div #timer{
+  position: absolute;
+  bottom: 0;
+}

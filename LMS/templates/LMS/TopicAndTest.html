@@ -1,0 +1,233 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="row">
+<div class="col-md-3 border mt-2">
+    <div class="mt-2 rounded ml-2 ">
+        <h5>
+            <a href="/contentsDisplay/course/{{ regC.id }}/" class="display-5 pl-3  text-primary"><i class="fa fa-arrow-left" ></i>   &nbsp;&nbsp;Back to Contents</a>
+        </h5>
+    </div>
+    <hr>
+    <div><h5 class="display-5 text-center">Course curriculum</h5>
+    </div>
+    <div class="curriculum-details pl-3 pr-2 sideTop" style="overflow-x: auto; height: 100vh;">
+       {% for chap in navbarElements.chapter_set.all|dictsort:"sl_no" %}
+        <div class="card card-sm card-body shadow-3d">
+            <a class="title text-primary" data-toggle="collapse" href="#collapseExample{{chap.id}}"><strong>{{chap.name}}</strong> <span class="float-right"><i class="fas fa-angle-down"></i></span></a>
+            {% if chapter.sl_no == chap.sl_no %}
+            <ul class="list-group collapse show" id="collapseExample{{chap.id}}">
+            {% else %}
+            <ul class="list-group collapse" id="collapseExample{{chap.id}}">
+            {% endif %}
+    {% for top in chap.topic_set.all|dictsort:"sl_no" %}
+       {% if top.sl_no == page_sl_no %}
+          {% if  top.name in test %}
+
+                <li class="list-group-item bg-info text-white">
+                    <span class="float-left">
+                        <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-white"></i>  &nbsp; {{top.name}}  &#10004; </a>
+
+                    </span>
+                </li>
+                {% else %}
+
+                    <li class="list-group-item bg-info text-white ">
+                    <span class="float-left">
+                        <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-white"></i>&nbsp; {{top.name}}   </a>
+                    </span>
+                 </li>
+                  {% endif %}
+
+                {% else %}
+
+                {% if  top.name in test %}
+                 <li class="list-group-item ">
+                    <span class="float-left">
+                        <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-warning"></i>  &nbsp;  {{top.name}} &#10004; </a>
+                    </span>
+                 </li> {% else %}
+
+                    <li class="list-group-item ">
+                        <span class="float-left">
+                            <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-warning"></i>&nbsp; {{top.name}} </a>
+                        </span>
+
+                    </li>
+                    {% endif %}
+
+                    {% for tes in top.test_set.all|dictsort:"sl_no" %}
+                        {% if tes.sl_no == page_sl_no %}
+                            <li class="list-group-item bg-info text-white ">
+                        {% if  tes.name in test%}
+
+					 		<span class="float-left">
+                        		<a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{tes.sl_no}}/" data-toggle="tooltip" title="click here to open ->Test on {{tes.name}}"><i class="fas fa-pen text-danger"></i> Test on {{tes.name}} &#10004; </a>
+                    		</span></li>
+                        {% endif %}
+
+                        {% elif   tes.name in test %}
+                        <li class="list-group-item">
+                            <span class="float-left">
+                        		<a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{tes.sl_no}}/" data-toggle="tooltip" title="click here to open ->Test on {{tes.name}}"><i class="fas fa-pen  text-danger"></i> Test on {{tes.name}} &#10004; </a>
+                    		</span></li>
+                        {% else %}
+                           <li class="list-group-item">
+					 		<span class="float-left">
+                        		<a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{tes.sl_no}}/" data-toggle="tooltip" title="click here to open ->Test on {{tes.name}}"><i class="fas fa-pen  text-danger"></i> Test on {{tes.name}}</a>
+                    		</span>
+
+                        </li>
+                        {% endif %}
+
+                   {% endfor %}
+
+                {% endif %}
+
+                {% endfor %}
+
+                {% for problem in chap.problem_set.all|dictsort:"id" %}
+                {% if problem.pblm_id in test %}
+
+                        <li class="list-group-item">
+                            <span class="float-left"><a href="/Assignments/{{problem.id}}"><i class="fas fa-bolt text-danger"></i>&nbsp;&nbsp; {{problem.pblm_id}} &#10004;</a></span>
+                            <!-- <span class="float-right">--:--</span> -->
+                        </li>
+                {% else %}
+                 <li class="list-group-item">
+                            <span class="float-left"><a href="/Assignments/{{problem.id}}"><i class="fas fa-bolt text-danger"></i>&nbsp;&nbsp; {{problem.pblm_id}} </a></span>
+                            <!-- <span class="float-right">--:--</span> -->
+                        </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            </div><!-- /.content-table -->
+        {% endfor %}
+    </div><!-- /.curriculum-details -->
+</div>
+    <div class="col-md-8 mt-3">
+    {% if link != None %}
+         <!-- <h3 class="mb-0 mb-3 mt-3 ml-5 "><i class="fas fa-book-reader"></i>&nbsp;{{name}}</h3> -->
+        <div class="embed-responsive embed-responsive-1by1">
+          <iframe class="embed-responsive-item" src="{{link}}"></iframe>
+        </div>
+        <hr>
+
+<!--         <iframe src="{{link}}" width="1000" height="1000">
+    </iframe> -->
+
+    {% endif %}
+
+<!-- ###################################test############### -->
+
+
+    {% if questions != None %}
+        <div class="ml-5 test mb-5">
+            <h3 class="mb-0 mb-3 mt-3 ml-2 ">{{name}}</h3>
+
+            <form action="/Testvalidate/{{count}}" method="post" enctype="multipart/form-data" >{% csrf_token %}
+                <input type="hidden" name="questionid" id="questionid" value="{{questions.id}}">
+                <input type="hidden" name="totalcount" value="{{totalcount}}">
+                <input type="hidden" name="next" value="{{next}}">
+                <input type="hidden" name="previous" value="{{previous}}">
+                <input type="hidden" name="timegiven" id= "timegiven" value="{{questions.timegiven}}">
+                <div class="card card-body shadow-3d">
+                        <div class="row bg-info p-2 rounded text-white">
+                            <div class="col-md-10">
+                                Q. Single Choice Question
+                            </div>
+                            <div class="col-md-2">
+                                <i class="far fa-clock"></i>&nbsp;<span id="time">0(sec)</span></h2>
+                            </div>
+                        </div>
+                        <pre>
+                            <p class="lead"><pre>{{questions.question}}</pre></p>
+                        </pre>
+                        <ul class="list-group mb-5">
+                        {% for a in questions.answers %}
+                            <li class="list-group-item">
+                                <div class="custom-radio" >
+                                <div class="custom-control custom-radio">
+                                   <input type="radio" class="custom-control-input" value={{a.id}} name="answer" id="{{a.id}}" required="">
+                                   <label class="custom-control-label" for="{{a.id}}"><span><pre>{{a.ans}}</pre></span></label>
+                                </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <input type="hidden" name="timeTaken" value="" id="timeTaken" />
+                        <button type="submit" id="TimeButton" value = "Submit Answer" class="btn btn-primary">Submit Answer</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+
+
+<!--#########################################Complete result############################################# -->
+    {% if final_result %}
+    <h2  class=" mt-5 mb-3" style="text-align:center;">Final Test Report</h2>
+    <div class="row ml-2" style="overflow-x: auto;">
+        <table class="table table-bordered" style="width: 90%">
+            <tr style="width: 100%">
+                <th>Question</th>
+                <th>Correct Answer</th>
+                <th>Submitted Answer</th>
+                <th>Result</th>
+            </tr>
+            {% for i in final_result %}
+            <tr>
+                <td><pre>{{i.question__question}}</pre></td>
+                <td ><pre>{{i.corct_ans}}</pre></td>
+                <td ><pre>{{i.ans_submit}}</pre></td>
+
+                {% if i.iscorrect == True %}
+                <td class="text-success"><i class="far fa-check-circle" style="font-size:36px;color:green;"></i></td>
+                {% else %}
+                <td class="text-danger"><i class="far fa-times-circle" style="font-size:36px;color:red;"></i></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+        <!-- <p>Level - 1 &nbsp;&nbsp;:&nbsp;&nbsp;{{level_percentile.easy}}&nbsp;%</p>
+        <p>Level - 2 &nbsp;&nbsp;:&nbsp;&nbsp;{{level_percentile.Intermediate}}&nbsp;%</p>
+        <p>Level - 3 &nbsp;&nbsp;:&nbsp;&nbsp;{{level_percentile.Difficult}}&nbsp;%</p>
+         --><h5>Final Score  &nbsp;&nbsp;:&nbsp;&nbsp;{{test_percentile|floatformat:2}}&nbsp;%</h5>
+    	</div>
+       </div>
+    {% endif %}
+<!-- #######################################end result ##################################### -->
+<!-- ######################################pagination########################################## -->
+
+
+<div class="row mb-5 mt-2">
+
+    {% if previous != 0 and previous != None %}
+    <div class="col-md-3">
+        <a class="page-link rounded" href="/topicAndTest/{{courseid}}/{{previous.chaptno}}/{{previous.topicno}}/">Previous</a>
+    </div>
+    {% endif %}
+
+    <div class="col-md-6"></div>
+    {% if next != 0 and next != None %}
+    <div class="col-md-3 rounded">
+        <a class="page-link rounded" href="/topicAndTest/{{courseid}}/{{next.chaptno}}/{{next.topicno}}/">Next</a>
+    </div>
+    {% endif %}
+</div>
+    {% if lastTopic %}
+    <div class="row" >
+        <div class="col-md-12" style="text-align:center" >
+        <hr>
+        <h4> End Of Assessments in Chapter &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{chaptername}}</h4>
+        <br>
+        <a class="btn btn-1 btn-warning" href="/TestOverview/{{chapter.course.id}}/{{chapter.sl_no}}">Lets have an Overview</a>
+        </div>
+    </div>
+<br>
+    {% endif %}
+</div>
+    </div>
+{% endblock %}

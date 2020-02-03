@@ -1,0 +1,114 @@
+{% extends 'home.html' %}
+{% block content %}
+ <!--    <link rel="stylesheet" type="text/css" href="/static/css/album.css"> -->
+
+<script type="text/javascript" src="/static/js/angular.min.js"></script>
+<script type="text/javascript" src="/static/js/pin.js"></script>
+<div ng-app = "myApp">
+  <section class="section details-page">
+        <div class="details-page">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="row">
+                     <div class="col-md-8">
+                         <h1 class="title-cus">PreAssessment</h1>
+                     </div>
+            
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.section-padding -->
+        </div><!-- /.overlay -->
+</section><!-- /.page-name -->
+ <br>    
+
+<div class="block" ng-controller="MainCtrl">
+  <div class="row">
+  
+<!-- ###################################  test  ############### -->
+<input type="hidden" ng-model="test" id="test" value="{{test}}" >
+<input type="hidden" ng-model="first_ques" id="first_ques" value="{{first_ques}}" >
+<input type="hidden" ng-model="first_answer" id="first_ans" value="{{first_answer}}">
+   
+
+
+<!-- ###################################   first question landing   ############### -->
+    
+    {% verbatim %}
+    <div class="container">
+    <div class="privew" id="baseQues" ng-init="testLanding()">
+        <div class="questionsBox">
+            <div class="questions_1">
+                <pre>{{first_ques}}</pre>
+            </div>
+                <ul class="answerList">
+                    <li ng-repeat="ans in first_answer track by $index">
+                        <label>
+                            <input type="radio" value="{{ans.id}}" name="answer" id="answerGroup_0">
+                             {{ans.answer}}
+                         </label>
+                     </li>
+                     
+                 </ul>
+                 <div class="questionsRow">
+                    <a ng-click="pretest_validate($event)" class="btn btn-1 btn-success" id="nextquestions">
+                    Submit
+                    </a> 
+                  </div>
+        </div>
+    </div>
+    </div>       
+   
+<!-- ################################### next questions landing along with previous ques result ############### -->
+<br/>
+
+    <div class="container mb-3">
+    <div class="privew" ng-if = "next_ques" id ="last">
+    <div class="questionsBox">
+        <div class="questions_1">
+           <pre ng-bind="results.next_ques.question"></pre>
+       </div>
+        <ul class="answerList">
+            <li ng-repeat="ans in answers">
+                <label>
+                    <input type="radio" ng-model='answerselected' value="{{ans.id}}" name="answer" id="answerGroup_0">
+                    {{ans.answer}}
+                 </label>
+             </li>
+        </ul>
+        <div class="questionsRow">
+            <a ng-if = "results.next_ques.question" ng-click="pretest_validate($event)" class="btn btn-1 btn-success" id="nextquestions">
+            Submit
+            </a> 
+        </div>
+    </div>
+</div>
+</div>
+    <br/>
+<!-- ################################### final result table  ############### -->
+<div class="container">
+<div class="col-md-12" ng-if="status">
+        <p>Congratulations !!!!!!!!!!!!! You have successfully completed the PreAssessment Test.This test is taken for Assessing the basic knowledge of individual which decides the further milestones accordingly.</p>
+        <h4>Lets get into the Course Contents now</h4>
+        <a href="/ContentDisplay/{{courseid}}" class="btn btn-1 btn-success">Start Now</a>
+        
+</div>
+</div>
+        
+            
+        
+{% endverbatim %}
+    
+
+<!-- </div> -->
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+
+    
+        
+
+        
+        

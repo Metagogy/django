@@ -1,0 +1,179 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    {% if events %}
+
+
+    <section class="page-name background-bg" data-image-src="/static/images/breadcrumb.jpg">
+        <div class="overlay">
+            <div class="section-padding">
+                <div class="container">
+                    <h2 class="section-title">Events</h2>
+                    <!-- <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Events</li>
+                        </ol>
+                    </nav> -->
+                </div><!-- /.container -->
+            </div><!-- /.section-padding -->
+        </div><!-- /.overlay -->
+    </section><!-- /.page-name -->
+
+
+
+
+
+    <section class="events">
+        <div class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/3.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">Your guide to event planning</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/4.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">Selling Sponsorships for Events & Nonprofits</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/5.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">IAS 10 - Events After Reporting Date</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/6.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">Advice from a Successful Venture Capitalist</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/7.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">Fundraising Success: The Complete Development Plan</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="event media">
+                            <div class="event-time media-left">
+                                <time datetime="2017-07-28"><span class="date">28</span> July</time>
+                            </div>
+                            <div class="event-details media-body">
+                                <div class="event-thumb radius"><img src="/static/images/event/8.jpg" alt="Event Thumbnail"></div><!-- /.enent-thumb -->
+                                <h2 class="event-title"><a href="event-details.html">LIVE Streaming Pro: Ultimate Course | From Beginner to Pro</a></h2><!-- /.event-title -->
+                                <div class="event-meta">
+                                    <span class="time"><i class="icon-clock"></i> 4am - 8pm</span><!-- /.time -->
+                                    <span class="place"><i class="icon-location-pin"></i> New York, USA</span><!-- /.place -->
+                                </div><!-- /.event-meta -->
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                </p>
+                            </div><!-- /.event-details -->
+                        </div><!-- /.event -->
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.section-padding -->
+    </section>
+    {% else %}
+    <section class="section">
+        <div class="error-contents text-center">
+            <!-- <a class="error-logo" href="index.html"><img src="/static/images/logo.png" alt="Logo"></a> -->
+            <div class="section-padding gray-bg">
+                <h2 class="title">404</h2>
+                <h3>
+                    Sorry, No events right now.
+                </h3>
+                <a href="/" class="btn btn-primary mt-4">Back to homepage</a>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.js-example-basic-single').select2(
+      {
+        placeholder: 'Find a Course',
+      });
+    $("#courseSearch").on('select2:select', function (e){
+      window.location.href=e.params.data.id;
+    })
+});
+
+</script>
+{% endblock %}

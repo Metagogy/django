@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+  <h2 class="display-2 text-center text-white">Close Question</h2>
+</section>
+<div class="container">
+  <div class="card mb-5 mt-5">
+    <div class="card-body text-center shadow-lg">		
+    	<h4 class="display-2 mb-5">Do you really want to Close This Question</h4>
+    	<p class="text-center mb-5 text-warning"> Closing the question disables the option of answering to this question by everyone</p>
+      	<pre class="mb-5">{{qns.about}}</pre>
+      	<pre class="mb-5">{{qns.query}}</pre>
+    	 <a href="/closed/{{qns.id}}" class="btn btn-warning"><span class="lnr lnr-arrow-right">Close Question</span></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

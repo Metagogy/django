@@ -1,0 +1,256 @@
+{% extends 'home.html' %}
+{% block content %}
+<!-- <section class="section section-sm bg-gradient-default my-0">
+      <div class="shape shape-style-1 shape-primary alpha-4">
+        <span></span>
+        <span></span>
+      </div>
+        <div class="container py-lg-md d-flex">
+        <h1 class="display-1  text-white"><i class="fas fa-laptop"></i> Assignment</h1>
+        </div>
+</section> -->
+<div style="min-height: 60vh" class="row">
+	<div class="col-md-3 border mt-2">
+    <div class="mt-2 rounded ml-2 ">
+        <h5>
+            <a href="/contentsDisplay/course/{{regCourse.id}}/" class="display-5 pl-3  text-primary"><i class="fa fa-arrow-left" ></i>   &nbsp;&nbsp;Back to Contents</a>
+        </h5>
+    </div>
+    <hr>
+    <div><h5 class="display-5 text-center">Course curriculum</h5>
+    </div>
+    <div class="curriculum-details pl-3 pr-2 sideTop">
+       {% for chap in navbarElements.chapter_set.all|dictsort:"sl_no" %} 
+        <div class="card card-sm card-body shadow-3d">
+            <a class="title text-primary" data-toggle="collapse" href="#collapseExample{{chap.id}}"><strong>{{chap.name}}</strong> <span class="float-right"><i class="fas fa-angle-down"></i></span></a>
+            {% if chapter.sl_no == chap.sl_no %}
+            <ul class="list-group collapse show" id="collapseExample{{chap.id}}">
+            {% else %}
+            <ul class="list-group collapse" id="collapseExample{{chap.id}}">
+            {% endif %}
+                {% for top in chap.topic_set.all|dictsort:"sl_no" %}
+                {% if top.sl_no == page_sl_no %}
+                <li class="list-group-item bg-info text-white">
+                    
+
+                    <span class="float-left">
+                        <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-white"></i>&nbsp; {{top.name}}</a>
+                    </span>
+                    <!-- <span class="float-right">--:--</span> -->
+
+                    
+                </li>
+                {% else %}
+                <li class="list-group-item">
+                    <span class="float-left">
+                        <a href="/topicAndTest/{{navbarElements.id}}/{{chap.sl_no}}/{{top.sl_no}}/" data-toggle="tooltip" title="click here to open -> {{top.name}}"><i class="far fa-file-alt text-warning"></i>&nbsp; {{top.name}}</a>
+                    </span>
+                    <!-- <span class="float-right">--:--</span> -->
+
+                    
+                </li>
+                {% endif %}
+
+                {% endfor %}
+                {% for problem in chap.problem_set.all|dictsort:"id" %}
+                        <li class="list-group-item">
+                            <span class="float-left"><a href="/Assignments/{{problem.id}}"><i class="fas fa-bolt text-danger"></i>&nbsp;&nbsp; {{problem.pblm_id}}</a></span>
+                            <!-- <span class="float-right">--:--</span> -->
+                        </li>
+                {% endfor %}
+            </ul>
+            </div><!-- /.content-table -->
+        {% endfor %}
+    </div><!-- /.curriculum-details -->
+</div>
+
+	<div class="row col-md-9 mt-2">
+		<div class="col-md-12 border p-3" style="overflow-x: auto; min-height: 60vh">
+			<h4>Assignment</h4>
+			<div class="float-right">Time left : <span id="time" class="text-warning"></span></div>
+			<div class="mb-3">
+				<p><strong>Problem Statement &nbsp;: {{problem.question}}</strong></p>
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-2">
+				{% if problem.level == 1 %}
+					<span class="text-success mr-5"><strong>Easy</strong></span>
+				{% elif problem.level == 2 %}
+					<span class="text-warning mr-5"><strong>Medium</strong></span>
+				{% else %}
+					<span class="text-danger mr-5"><strong>Tough</strong></span>
+				{% endif %}
+				</div>
+				<div class="col-md-1">
+					Topics:
+				</div>
+				<div class="col-md-9">
+				{% for i in problem.tags %}
+		        	<a class="btn btn-sm btn-primary mb-2" href="/topicAndTest/{{problem.chapter.course.id}}/{{i.chapter}}/{{i.topic}}" target=_blank>{{i.topicname}}</a>
+			   	{% endfor %}
+				</div>
+			</div>
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+			  <li class="nav-item">
+			    <a class="nav-link active pl-5 pr-5" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-poll-h"></i> Description</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pl-5 pr-5" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-list"></i> Hints</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pl-5 pr-5" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-keyboard"></i> Sample I/O</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pl-5 pr-5" id="contact-tab" data-toggle="tab" href="#solution" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-flask"></i> Solutions</a>
+			  </li>
+			</ul>
+			<div class="tab-content p-5" id="myTabContent">
+			  <div class="tab-pane fade show active lead" id="home" role="tabpanel" aria-labelledby="home-tab"><pre>{{problem.instructions}}</pre></div>
+			  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			  		<!-- <h5><strong></strong></h5> -->
+			  		{% for hint in problem.hints %}
+			  		<p><strong>Hint {{forloop.counter}} :</strong> {{hint.hint}}</p>
+			  		{% endfor %}
+			  		<!-- ======Reference sub topics===== -->
+
+			  		<h5><strong>Refer&nbsp;:</strong></h5>
+
+			   	{% for subtag in problem.subtags.all %}
+	   		      <div class="card">
+		            <div class="card-body">
+		              <h4 class="heading text-center">{{subtag.name}}</h4>
+		              <p class="lead"><pre class="">{{subtag.content}}</pre></p>
+		            </div>
+		          </div>
+			   	{% endfor %}	
+			  	
+			  </div>
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  <h5><strong>Sample Input&nbsp;:</strong></h5><br/>
+				   <pre class="">{{problem.eg_input}}</pre>
+				   <h5><strong>Sample Output&nbsp;:</strong></h5><br/>
+				   <pre class="">{{problem.eg_output}}</pre>
+				</div>
+				<div class="tab-pane fade" id="solution" role="tabpanel" aria-labelledby="contact-tab">
+					No Solutions Yet
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 border" style="overflow-x: auto; min-height: 60vh;">
+			<div class="card card-body shadow-3d mt-5">
+                <div class="row bg-info p-2 rounded text-white">
+                    <div class="col-md-10">
+                        Q. Select and submit
+                    </div>
+                </div>
+			{% for test1 in thirrr %}
+				<div class="row">
+					<div class="mt-5">
+					<p>{{test1.1.testInput}}</p>
+					{% if not test1.0 %}
+					<ul class="list-group">
+						{% for ans in test1.1.ans_choice %}
+						<li class="list-group-item">
+						<label>
+							<input type="radio" name="choice{{test1.1.id}}" value="{{ans.choice}}"> {{ans.choice}}</label>
+						</li>
+						{% endfor %}
+						
+					</ul>
+					<button class="btn btn-success mt-5 testCaseButton" value="{{test1.1.id}}" id="{{test1.1.id}}">Submit</button>
+					{% else %}
+					<div class="alert alert-secondary" role="alert">
+					  You have solved this!
+					</div>
+					{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<input type="hidden" id="idd" value="{{problem.id}}">
+<input type="hidden" id="chapter" value="{{problem.chapter.id}}">
+<input type="hidden" id="mode" value="{{mode}}">
+<input type="hidden" id="currentuser" value="{{currentuser}}">
+<input type="hidden" id="timegiven" value="{{problem.timegiven}}">
+<input type="hidden" id="timeTaken" value="">
+<br>
+	
+
+	
+	<!--  =======================compiler ======================== -->
+<!-- <hr> -->
+
+<!-- <div class="row" >
+	<div class="col-md-3"></div>
+	<div class="col-md-6 mt-5">
+	<h3>Upload your code here</h3>
+	<input type="file" class="btn btn-info" />
+	<button class="btn btn-1 btn-success" id="run" >Upload</button>
+	</div>
+	<div class="col-md-1"></div>
+</div> -->
+
+<!--  =======================  pagination ======================== -->
+
+	<!-- <div class="row" >
+		<div class="col-md-1"></div>
+		<div class="col-md-5 comments-area" style=" height: 455px; overflow-y: scroll;">
+			<h4 class="text-center">Output</h4>
+			<hr>
+				<pre id="myresult"></pre>		
+		</div>
+		<div class="col-md-5 comments-area" style=" height: 455px; overflow-y: scroll;">
+			<h4 class="text-center">Run Test Cases</h4>
+			<hr>
+			<h6><strong>Test Case 1</strong></h6>
+			<p class="alert alert-secondary">{{problem.testcase1Input}}</p>
+			{% if Assignmentresults.testcase1 != True %}
+			<button type="button"  class="btn btn-block btn-warning mt-2  mb-3" id="1" onclick="testcase(1)">Run Testcase1</button><br>
+			{% endif %}
+			<h6><strong>Test Case 2</strong></h6>
+			<p class="alert alert-secondary">{{problem.testcase2Input}}</p>
+			{% if Assignmentresults.testcase2 != True %}
+			<button class="btn btn-block btn-warning mt-2  mb-3" id="2" onclick="testcase(2)">Run Testcase2</button><br>	
+			{% endif %}
+			<h6><strong>Test Case 3</strong></h6>
+			<p class="alert alert-secondary">{{problem.testcase3Input}}</p>
+			{% if Assignmentresults.testcase3 != True %}
+			<button class="btn btn-block btn-warning mt-2 mb-3" id="3" onclick="testcase(3)">Run Testcase3</button>
+			{% endif %}
+		</div>
+
+	</div>
+	<hr> -->
+	<div class="row">
+		<div class="col-md-1"></div>
+				
+		<div class="col-md-5">
+		    {% if previous_page == True %}
+		      <a href="/Assignments/{{previous_page_num}}/" style="float: left;width:420px;" class="btn btn-primary"><i class="fa fa-arrow-left" ></i>&nbsp;&nbsp;&nbsp; Previous Question</a>
+		    {% endif %}
+		</div>
+		
+		<div class="col-md-5">
+		    {% if next_page %}
+		    	<a class="btn btn-primary" style="float: right;width:420px;" href="/Assignments/{{next_page_num}}/">Next Question &nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right" ></i></a>
+		    {% elif nextchapter == false %}
+		    	<a class="btn btn-success" style="float: right;width:420px;" href="/chapterOverview/{{problem.chapter.course.id}}/{{problem.chapter.id}}/">Chapter Overview </a>
+		    	
+		    {% endif %}
+		</div>
+	</div>	
+<br>
+ 	    
+
+		
+
+{% endblock %}
+
+

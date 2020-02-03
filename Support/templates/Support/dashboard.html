@@ -1,0 +1,92 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+        <div class="details-page">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="row">
+                     <div class="col-md-12">
+                         <h1 class="title-cus text-center display-2 text-white">Forum</h1>
+                     </div>
+            
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.section-padding -->
+        </div><!-- /.overlay -->
+</section><!-- /.page-name -->
+<br>
+<div class="container">
+	<div class="main_title mb-5 mt-5">
+		<h2 class="display-3">Overall Contributions</h2>
+	</div>
+	<div class="text-center row mb-5">
+		<div class="col-lg-4">
+			<div class="work_item card-body bg-warning text-white m-0 rounded">
+				<span class="display-4">{{qns}}</span><br>
+				<span class="display-4">Questions Raised</span>
+			</div>
+		</div>
+		<div class="col-lg-4 ">
+			<div class="work_item card-body bg-default text-white m-0 rounded">
+				<span class="display-4">{{ans}}</span><br>
+				<span class="display-4">Answers Submitted</span>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="work_item card-body bg-primary text-white m-0 rounded">
+				<span class="display-4">{{rewards}}</span><br>
+				<span class="display-4">Rewards Gained</span>
+			</div>
+		</div>
+	</div>
+	
+<!-- =================================course wise ================================ -->	
+<hr>
+<div class="main_title">
+    <h2 class="display-3">Course Wise Contributions</h2>
+</div>
+
+{% for i in courseRelated %}
+    <h2 class="display-4 mt-5">{{i.course.name.course.name}}</h2>
+    <div class="row mb-5">
+        <div class="col-md-6">
+            
+                <img src="/static/images/{{i.course.name.course.cat}}.png" alt="" class="img-fluid">
+            
+            
+        </div>
+        <div class="col-md-6 mt-sm-20 left-align-p">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <div class="work_item card-body bg-success text-white m-0 rounded mb-3">
+                    <span class="display-4">{{i.course.qns}}</span><br>
+                    <span class="display-4">Questions</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="work_item card-body bg-primary text-white m-0 rounded  mb-3">
+                    <span class="display-4">{{i.course.ans}}</span><br>
+                    <span class="display-4">Answered</span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="work_item card-body bg-warning text-white m-0 rounded">
+                    <span class="display-4">{{i.course.rewards}}</span><br>
+                    <span class="display-4">Rewards</span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <a href="/open/{{i.course.name.course.id}}" class="text-white">
+                    <div class="work_item card-body bg-default text-white m-0 rounded" style="height: 100%; vertical-align: middle;">
+                            <span class="display-4"><i class="fas fa-arrow-circle-right"></i></span><br>
+                            <span class="display-4">Get In</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div> 
+</div>   
+
+{% endfor %}
+
+{% endblock %}

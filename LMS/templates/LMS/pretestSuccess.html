@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+{% block content %}
+<section class="section details-page">
+        <div class="details-page">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="row">
+                     <div class="col-md-8">
+                         <h1 class="title-cus">PreAssessment</h1>
+                     </div>
+            
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.section-padding -->
+        </div><!-- /.overlay -->
+</section><!-- /.page-name -->
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <p>Congratulations !!!!!!!!!!!!! You have successfully completed the PreAssessment Test.This test is taken for Assessing the basic knowledge of individual which decides the further milestones accordingly.</p>
+        <h4>Lets get into the Course Contents now</h4>
+        {% if cb == 'course' %}
+            <a href="/contentsDisplay/course/{{courseid}}" class="btn btn-1 btn-success">Start Now</a>
+        {% else %}
+            <a href="/contentsDisplay/bundle/{{courseid}}" class="btn btn-1 btn-success">Start Now</a>
+        {% endif %}
+    </div>
+    
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

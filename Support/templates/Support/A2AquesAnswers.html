@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="container ">
+<div class="row">
+<div class="col-md-12">
+	<h4 class="mb-4 text-danger questions">Question</h4>
+		<h2 class="quest">
+			<pre> {{qns.query}} </pre>
+		</h2>
+		<span class="">&nbsp;{{qns.raised_by}}</span>
+		<span > &nbsp;{{qns.timestamp}}</span>
+	<hr>
+	<h4>Answers</h4>
+       {% if answers %}
+    	{% for ans in answers %}
+			<h2 class="quests">
+   				{{ans.answer}}
+			</h2>
+			<span>{{ans.answered_by}}</span>
+			<span >{{ans.timestamp}}</span>
+			{% if ans.verified_by == None %}
+        		<form action="/A2Averify/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+					
+					<input type="hidden" value="{{ans.id}}" name="ansid">
+					<div class="row">
+						<div class="form-group col-md-12">
+					<input type="submit" value="Verify"  class="btn btn-primary">
+                	</div>
+                	</div>
+                </form>
+                {% else %}
+                <p>verified</p>
+    		{% endif %}  
+		</div>
+	</div>
+        {% endfor%}
+	{% endif %}
+    </div>
+   
+{% endblock %}
+			

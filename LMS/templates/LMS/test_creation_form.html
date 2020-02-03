@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<br><br><br><br><br>
+<div ng-app = "myApp"  class="">
+<div class="block" ng-controller="MainCtrl">
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div >
+            
+            <h2>Create a Test</h2>
+            
+        </div>
+        <form action="/test_creation/" method="post" enctype="multipart/form-data" ng-init="coursesList()">{% csrf_token %}
+            
+            <!-- <input type="hidden" id="courseid" value="{{courseid}}" ng-course="courseid"> -->
+                <h4>Test Name:</h4>
+                <input type="text" name="test" class="form-control">
+                <br/>
+                <h4 >Course</h4>
+                {% verbatim %}
+
+                <select ng-model="course" id="courseid" name="courseid"  class="form-control" ng-change="fetchData()">
+                
+                    <option ng-repeat='coursee in courseslist' value="{{coursee.id}}" >{{coursee.name}}</option>
+                
+                </select>
+                <br>
+            	<h4>Chapter name:</h4>
+                
+                <select ng-model="chapterselected" id=chapterselected name="chapter" class="form-control" ng-change="topicData()" >
+                    <option ng-repeat='chapter in chapterslist'   value={{chapter.id}}>{{chapter.name}}</option>
+                </select>
+            
+                <br>
+            
+                <h4>Topic name:</h4>
+                <select class="form-control" name="topic">
+                    <option ng-repeat='topic in topics' value={{topic.id}}>{{topic.name}}</option>
+                </select>
+                {% endverbatim %}
+                <br/>
+                <input type="submit" value="submit" class="btn btn-primary" >
+        </form>
+    </div>
+    
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <a href="/course/{{course.id}}">
+        <div class="card shadow-lg border-5  mt-5">
+            <div><img src="/static/images/{{course.cat}}.png" alt="Item Thumbnail" class="img-center img-fluid"></div><!-- /.item-thumb -->
+            <div class="item-details-cus p-4 l-5">
+                <h6 class=""><strong>{{course.name}}</strong></h6><!-- /.item-title -->
+                <span class="instructor">Duration : {{course.duration}} days</span><!-- /.instructor -->
+
+                <div class="details-bottom">
+                    <div class="course-price float-left"><span class="currency">INR </span><span class="price">{{course.price}}</span></div><!-- /.course-price -->
+                    <!-- <div class="rating float-right">
+                        <input type="hidden" class="rating-tooltip-manual" data-filled="fas fa-star" data-empty="far fa-star" value="4.5" data-fractions="5"/>
+                    </div> -->
+                </div><!-- /.details-bottom -->
+            </div><!-- /.item-details -->
+        </div><!-- /.item -->
+        </a>
+    </div>
+    
+</div>
+<br>
+<h4>From selected bundle Course named "{{course.name}}" Already got registered go back to buy the remaining courses individually</h4>
+<a href="/courses/" class="btn btn-warning">Browse Courses</a>
+</div>
+{% endblock %}
